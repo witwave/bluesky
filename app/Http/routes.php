@@ -9,28 +9,37 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-*/
+ */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
+Route::group(['namespace' => 'Auth'], function () {
+	Route::get('auth/login', 'AuthController@getLogin');
+	Route::post('auth/login', 'AuthController@postLogin');
+	Route::get('auth/logout', 'AuthController@getLogout');
 
-Route::group(['namespace' => 'Auth'], function(){
-    Route::get('auth/login', 'AuthController@getLogin');
-    Route::post('auth/login', 'AuthController@postLogin');
-    Route::get('auth/logout', 'AuthController@getLogout');
+	// Registration routes...
+	Route::get('auth/register', 'AuthController@getRegister');
+	Route::post('auth/register', 'AuthController@postRegister');
 
-    // Registration routes...
-    Route::get('auth/register', 'AuthController@getRegister');
-    Route::post('auth/register', 'AuthController@postRegister');
-
-    Route::get('password/reset/{token}', 'PasswordController@getReset');
-    Route::post('password/reset', 'PasswordController@postReset');
+	Route::get('password/reset/{token}', 'PasswordController@getReset');
+	Route::post('password/reset', 'PasswordController@postReset');
 });
 
+Route::get('/product', function () {
+	return view('product.list');
+});
 
+Route::get('/product/{id}', function () {
+	return view('product.view');
+});
+
+Route::get('/product2/{id}', function () {
+	return view('product.view-full');
+});
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('profile', 'ProfileController@show');
+	Route::get('profile', 'ProfileController@show');
 });

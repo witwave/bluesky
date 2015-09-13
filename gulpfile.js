@@ -13,13 +13,13 @@ elixir.config.sourcemaps = true; //关闭生成map文件
 elixir(function(mix) {
 	//mix.sass('app.scss');
 	mix.styles([
-		'normalize.css',
+		'bootstrap.css',
 		'main.css'
 	], 'public/assets/css');
-
+ 
 	mix.scripts([
-		'jquery.js',
-		'app.js'
+		'bootstrap.js',
+		'main.js'
 	], 'public/assets/js/app.js');
 
 

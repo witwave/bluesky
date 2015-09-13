@@ -1,3 +1,5 @@
+@extends('layouts.master')
+@section('content')
 <form method="POST" action="/password/email">
     {!! csrf_field() !!}
 
@@ -12,3 +14,4 @@
         </button>
     </div>
 </form>
+@endsection
