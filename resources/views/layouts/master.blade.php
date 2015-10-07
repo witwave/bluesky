@@ -1,28 +1,45 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
+<html lang="en">
+    <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="。">
-        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
         <meta name="author" content="">
-        <title>App Name - @yield('title')</title>
-        <link rel="stylesheet" href="{{ elixir('assets/css/all.css') }}">
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <title>@yield('title')</title>
+        <!-- Bootstrap core CSS
+        ================================================== -->
+        <link href="/uikit/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template
+        ================================================== -->
+        <link href="/uikit/css/uikit.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-          <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <script src="/uikit/js/html5shiv.js"></script>
+        <script src="/uikit/js/respond.min.js"></script>
         <![endif]-->
-
-        <!-- Favicons -->
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-        <link rel="icon" href="/favicon.ico">
     </head>
-    <body>
-        <div class="container">
+    <body class="preload tile-1-bg">
+        <!-- Preloader
+        ============================================ -->
+        <div class="page-preloader">
+            <div class="vcenter"> <div class="vcenter-this"><img class="anim" src="images/loader.gif" alt="loading..." /></div></div>
+        </div>
+        <!-- /Preloader
+        ============================================ -->
+        <!-- Page Wrapper
+        1.page-wrapper shadow boxed-wrapper  ===wide
+        2.boxed-wrapper                      ===box
+        ++++++++++++++++++++++++++++++++++++++++++++ -->
+        <div class="page-wrapper shadow">
             @yield('content')
         </div>
-        <script src="{{ elixir('assets/js/app.js') }}"></script>
+        <!-- /Page Wrapper
+        ++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Javascript
+        ================================================== -->
+        <script src="/uikit/js/jquery-latest.min.js"></script>
+        <script src="/uikit/js/uikit.js"></script>
+        <!-- /JavaScript
+        ================================================== -->
     </body>
 </html>

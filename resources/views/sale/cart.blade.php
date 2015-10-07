@@ -1,352 +1,143 @@
 @extends('layouts.main')
 @section('content')
-<div id="main-container" class="container">
-	<!-- Breadcrumb Starts -->
-	<ol class="breadcrumb">
-		<li><a href="index.html">Home</a></li>
-		<li class="active">Shopping Cart</li>
-	</ol>
-	<!-- Breadcrumb Ends -->
-	<!-- Main Heading Starts -->
-	<h2 class="main-heading text-center">
-	Shopping Cart
-	</h2>
-	<!-- Main Heading Ends -->
-	<!-- Shopping Cart Table Starts -->
-	<div class="table-responsive shopping-cart-table">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<td class="text-center">
-						Image
+<section class="page-info-block boxed-section">
+	<!-- Container -->
+	<div class="container cont-pad-x-15">
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb pull-left">
+			<li><a href="/"><i class="ti ti-home"></i></a></li>
+			<li class="active">我的购物车</li>
+		</ol>
+		<!-- /Breadcrumb -->
+		<!-- hlinks -->
+		<ul class="page-links pull-right hlinks hlinks-icons color-icons-borders color-icons-bg-hovered">
+			<li><a href="#"><i class="icon fa fa-facebook"></i></a></li>
+			<li><a href="#"><i class="icon fa fa-twitter"></i></a></li>
+			<li><a href="#"><i class="icon fa fa-rss"></i></a></li>
+		</ul>
+		<!-- /hlinks -->
+	</div>
+	<!-- /Container -->
+</section>
+<section class="content-block default-bg">
+	<!-- Container -->
+	<div class="container cont-pad-t-sm">
+		<!-- Cart -->
+		<div class="cart">
+			<!-- Cart Contents -->
+			<table class="cart-contents">
+				<thead>
+					<tr>
+						<th class="hidden-xs">图片</th>
+						<th>描述</th>
+						<th>数量</th>
+						<th class="hidden-xs">单价</th>
+						<th>总价</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($cart as $row)
+					<tr>
+						<td class="image hidden-xs"><img src="images/products/product1.jpg" alt="product">
+							{{$row->options->has('size') ? $row->options->size : ''}}
+						</td>
+						<td class="details">
+							<div class="clearfix">
+								<div class="pull-left no-float-xs">
+									<a href="#" class="title">{{$row->name}}</a>
+									<div class="rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star disabled"></i>
+										<i class="fa fa-star disabled"></i>
+									</div>
+									<span>Code: GK0904</span>
+								</div>
+								<div class="action pull-right no-float-xs">
+									<div class="clearfix">
+										<button class="edit"><i class="fa fa-pencil"></i></button>
+										<button class="refresh"><i class="fa fa-refresh"></i></button>
+										<button class="delete"><i class="fa fa-trash-o"></i></button>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td class="qty">
+							<input type="text" value="{{ $row->qty }}" name="">
+						</td>
+						<td class="unit-price hidden-xs"><span class="currency">￥</span> {{$row->price}}</td>
+						<td class="total-price"><span class="currency">￥</span>{{$row->subtotal}}</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+			<!-- /Cart Contents -->
+			<!-- Cart Summary -->
+			<table class="cart-summary">
+				<tbody><tr>
+					<td class="terms">
+						<h5><i class="fa fa-info-circle"></i> 说明</h5>
+						<p></p>
 					</td>
-					<td class="text-center">
-						Product Details
-					</td>
-					<td class="text-center">
-						Quantity
-					</td>
-					<td class="text-center">
-						Price
-					</td>
-					<td class="text-center">
-						Total
-					</td>
-					<td class="text-center">
-						Action
-					</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td class="text-center">
-						<a href="product.html">
-							<img src="images/product-images/cart-thumb-img1.jpg" alt="Product Name" title="Product Name" class="img-thumbnail">
-						</a>
-					</td>
-					<td class="text-center">
-						<a href="product-full.html">Wedding Decoration</a>
-					</td>
-					<td class="text-center">
-						<div class="input-group btn-block">
-							<input type="text" name="quantity" value="1" size="1" class="form-control">
-						</div>
-					</td>
-					<td class="text-center">
-						$150.00
-					</td>
-					<td class="text-center">
-						$150.00
-					</td>
-					<td class="text-center">
-						<button type="submit" title="" class="btn btn-default tool-tip" data-original-title="Update">
-						<i class="fa fa-refresh"></i>
-						</button>
-						<button type="button" title="" class="btn btn-default tool-tip" data-original-title="Remove">
-						<i class="fa fa-times-circle"></i>
-						</button>
-					</td>
-				</tr>
-				<tr>
-					<td class="text-center">
-						<a href="product.html">
-							<img src="images/product-images/cart-thumb-img2.jpg" alt="Product Name" title="Product Name" class="img-thumbnail">
-						</a>
-					</td>
-					<td class="text-center">
-						<a href="product-full.html">Wedding Decoration</a>
-					</td>
-					<td class="text-center">
-						<div class="input-group btn-block">
-							<input type="text" name="quantity" value="1" size="1" class="form-control">
-						</div>
-					</td>
-					<td class="text-center">
-						$150.00
-					</td>
-					<td class="text-center">
-						$150.00
-					</td>
-					<td class="text-center">
-						<button type="submit" title="" class="btn btn-default tool-tip" data-original-title="Update">
-						<i class="fa fa-refresh"></i>
-						</button>
-						<button type="button" title="" class="btn btn-default tool-tip" data-original-title="Remove">
-						<i class="fa fa-times-circle"></i>
-						</button>
+					<td class="totals">
+						<table class="cart-totals">
+							<tbody>
+							<tr>
+								<td>商品总价</td>
+								<td class="price">￥ 4500.00</td>
+							</tr>
+							<tr>
+								<td>获得积分</td>
+								<td class="price">100</td>
+							</tr>
+							<tr>
+								<td class="cart-total">共计<small>(不含运费)</small></td>
+								<td class="cart-total price">￥ 5250.00</td>
+							</tr>
+						</tbody>
+						</table>
 					</td>
 				</tr>
 			</tbody>
-			<tfoot>
-			<tr>
-				<td colspan="4" class="text-right">
-					<strong>Total :</strong>
-				</td>
-				<td colspan="2" class="text-left">
-					$300
-				</td>
-			</tr>
-			</tfoot>
-		</table>
-	</div>
-	<!-- Shopping Cart Table Ends -->
-	<!-- Shipping Section Starts -->
-	<section class="registration-area">
-		<div class="row">
-			<!-- Shipping & Shipment Block Starts -->
-			<div class="col-sm-6">
-				<!-- Taxes Block Starts -->
-				<div class="panel panel-smart">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-						Shipping &amp; Taxes
-						</h3>
-					</div>
-					<div class="panel-body">
-						<!-- Form Starts -->
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label for="inputCountry" class="col-sm-3 control-label">Country :</label>
-								<div class="col-sm-9">
-									<select class="form-control" id="inputCountry">
-										<option>- All Countries -</option>
-										<option>India</option>
-										<option>USA</option>
-										<option>UK</option>
-										<option>China</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputRegion" class="col-sm-3 control-label">Region :</label>
-								<div class="col-sm-9">
-									<select class="form-control" id="inputRegion">
-										<option>- All Regions -</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputZipCode" class="col-sm-3 control-label">Zip Code :</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="inputZipCode" placeholder="Zip Code">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-9">
-									<button type="submit" class="btn btn-default">
-									Get Info
-									</button>
-								</div>
-							</div>
-						</form>
-						<!-- Form Ends -->
-					</div>
-				</div>
-				<!-- Taxes Block Ends -->
-				<!-- Shipment Information Block Starts -->
-				<div class="panel panel-smart">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-						Shipment Information
-						</h3>
-					</div>
-					<div class="panel-body">
-						<!-- Form Starts -->
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label for="inputFname" class="col-sm-3 control-label">First Name :</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="inputFname" placeholder="First Name">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputLname" class="col-sm-3 control-label">Last Name :</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="inputLname" placeholder="Last Name">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputEmail" class="col-sm-3 control-label">Email :</label>
-								<div class="col-sm-9">
-									<input type="email" class="form-control" id="inputEmail" placeholder="Email">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputPhone" class="col-sm-3 control-label">Phone :</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="inputPhone" placeholder="Phone">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputAddress1" class="col-sm-3 control-label">Address/1 :</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="inputAddress1" placeholder="Address/1">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputAddress2" class="col-sm-3 control-label">Address/2 :</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="inputAddress2" placeholder="Address/2">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputCity" class="col-sm-3 control-label">City :</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="inputCity" placeholder="City">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputPostCode" class="col-sm-3 control-label">Postal Code :</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="inputPostCode" placeholder="Postal Code">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputCountry" class="col-sm-3 control-label">Country :</label>
-								<div class="col-sm-9">
-									<select class="form-control" id="inputCountry1">
-										<option>- All Countries -</option>
-										<option>India</option>
-										<option>USA</option>
-										<option>UK</option>
-										<option>China</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputRegion" class="col-sm-3 control-label">Region :</label>
-								<div class="col-sm-9">
-									<select class="form-control" id="inputRegion1">
-										<option>- All Regions -</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-9">
-									<button type="submit" class="btn btn-black">
-									Submit
-									</button>
-								</div>
-							</div>
-						</form>
-						<!-- Form Ends -->
-					</div>
-				</div>
-				<!-- Shipment Information Block Ends -->
-			</div>
-			<!-- Shipping & Shipment Block Ends -->
-			<!-- Discount & Conditions Blocks Starts -->
-			<div class="col-sm-6">
-				<!-- Discount Coupon Block Starts -->
-				<div class="panel panel-smart">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-						Discount Coupon Code
-						</h3>
-					</div>
-					<div class="panel-body">
-						<!-- Form Starts -->
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label for="inputCouponCode" class="col-sm-3 control-label">Coupon Code :</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="inputCouponCode" placeholder="Coupon Code">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-9">
-									<button type="submit" class="btn btn-default">
-									Apply Coupon
-									</button>
-								</div>
-							</div>
-						</form>
-						<!-- Form Ends -->
-					</div>
-				</div>
-				<!-- Discount Coupon Block Ends -->
-				<!-- Conditions Panel Starts -->
-				<div class="panel panel-smart">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-						Terms &amp; Conditions
-						</h3>
-					</div>
-					<div class="panel-body">
-						<p>
-							HTML Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula.
-						</p>
-						<p>
-							Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi.
-						</p>
-						<p>
-							Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat.
-						</p>
-					</div>
-				</div>
-				<!-- Conditions Panel Ends -->
-				<!-- Total Panel Starts -->
-				<div class="panel panel-smart">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-						Total
-						</h3>
-					</div>
-					<div class="panel-body">
-						<dl class="dl-horizontal">
-							<dt>Coupon Discount :</dt>
-							<dd>$-25.00</dd>
-							<dt>Subtotal :</dt>
-							<dd>$300.00</dd>
-							<dt>Payment Fee :</dt>
-							<dd>$10.00</dd>
-							<dt>Shipment Fee :</dt>
-							<dd>$15.00</dd>
-							<dt>Tax Total :</dt>
-							<dd>$315.00</dd>
-						</dl>
-						<hr>
-						<dl class="dl-horizontal total">
-							<dt>Total :</dt>
-							<dd>$325.00</dd>
-						</dl>
-						<hr>
-						<div class="text-uppercase clearfix">
-							<a href="#" class="btn btn-default pull-left">
-								<span class="hidden-xs">Continue Shopping</span>
-								<span class="visible-xs">Continue</span>
-							</a>
-							<a href="#" class="btn btn-default pull-right">
-								Checkout
-							</a>
-						</div>
-					</div>
-				</div>
-				<!-- Total Panel Ends -->
-			</div>
-			<!-- Discount & Conditions Blocks Ends -->
+			</table>
+			<!-- /Cart Summary -->
 		</div>
-	</section>
-	<!-- Shipping Section Ends -->
+		<!-- /Cart -->
+		<!-- Cart Buttons -->
+		<div class="cart-buttons clearfix">
+			<a class="btn btn-base checkout" href="checkout.html"><i class="icon-left fa fa-shopping-cart"></i>去结算</a>
+			<a class="btn btn-primary checkout" href="category.html"><i class="icon-left fa fa-arrow-left"></i>继续购物</a>
+		</div>
+		<!-- /Cart Buttons -->
+	</div>
+	<!-- /Container -->
+</section>
+<div class="newsletter-block boxed-section overlay-dark-m cover-2-bg">
+	<!-- Container -->
+	<div class="container">
+		<form>
+			<!-- Row -->
+			<div class="row grid-10">
+				<!-- Col -->
+				<div class="col-sm-3 col-md-2">
+					<span class="case-c">订阅新品</span>
+				</div>
+				<!-- Col -->
+				<!-- Col -->
+				<div class="col-sm-6 col-md-8">
+					<input class="form-control" type="text" placeholder="请输入电子邮箱">
+				</div>
+				<!-- Col -->
+				<!-- Col -->
+				<div class="col-sm-3 col-md-2">
+					<button class="btn btn-block btn-color yellow-bg"><i class="icon-left fa fa-envelope"></i>提交</button>
+				</div>
+				<!-- /Col -->
+			</div>
+			<!-- /Row -->
+		</form>
+	</div>
+	<!-- /Container -->
 </div>
 @endsection
