@@ -31,7 +31,7 @@
                     @foreach ($item->images as $index=>$img)
                       @if ($index<4)
                     <li>
-                      <a href="/product/{{ $item->id }}.html" title="{{ $item->name }}">
+                      <a href="{{ $imagine->getUrl($img->path,'medium')}}" data-gal="prettyPhoto[gallery {{ $index }}]" title="{{ $item->name }}">
                         <img src="{{ $imagine->getUrl($img->path)}}" alt="{{ $item->name }}">
                       </a>
                     </li>
@@ -168,7 +168,7 @@
                     @foreach ($item->images as $index=>$img)
                      @if ($index<4)
                     <li>
-                      <a href="/product/{{ $item->id }}.html" title="{{ $item->name }}">
+                      <a href="{{ $imagine->getUrl($img->path,'medium')}}" data-gal="prettyPhoto[gallery {{ $index }}]" title="{{ $item->name }}">
                         <img src="{{ $imagine->getUrl($img->path)}}" alt="{{ $item->name }}">
                       </a>
                     </li>

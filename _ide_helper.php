@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.1.16 (LTS) on 2015-09-14.
+ * Generated for Laravel 5.1.16 (LTS) on 2015-10-09.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1270,7 +1270,7 @@ namespace {
         /**
          * Get the currently authenticated user.
          *
-         * @return \App\User|null 
+         * @return \App\Models\User|null 
          * @static 
          */
         public static function user(){
@@ -1372,7 +1372,7 @@ namespace {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \App\User 
+         * @return \App\Models\User 
          * @static 
          */
         public static function loginUsingId($id, $remember = false){
@@ -1477,7 +1477,7 @@ namespace {
         /**
          * Return the currently cached user.
          *
-         * @return \App\User|null 
+         * @return \App\Models\User|null 
          * @static 
          */
         public static function getUser(){
@@ -1519,7 +1519,7 @@ namespace {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \App\User 
+         * @return \App\Models\User 
          * @static 
          */
         public static function getLastAttempted(){
@@ -10953,6 +10953,134 @@ namespace {
          */
         public static function getNames(){
             return \Illuminate\View\Factory::getNames();
+        }
+        
+    }
+
+
+    class Cart extends \Gloudemans\Shoppingcart\Facades\Cart{
+        
+        /**
+         * Set the current cart instance
+         *
+         * @param string $instance Cart instance name
+         * @return \Gloudemans\Shoppingcart\Gloudemans\Shoppingcart\Cart 
+         * @static 
+         */
+        public static function instance($instance = null){
+            return \Gloudemans\Shoppingcart\Cart::instance($instance);
+        }
+        
+        /**
+         * Set the associated model
+         *
+         * @param string $modelName The name of the model
+         * @param string $modelNamespace The namespace of the model
+         * @return void 
+         * @static 
+         */
+        public static function associate($modelName, $modelNamespace = null){
+            \Gloudemans\Shoppingcart\Cart::associate($modelName, $modelNamespace);
+        }
+        
+        /**
+         * Add a row to the cart
+         *
+         * @param string|array $id Unique ID of the item|Item formated as array|Array of items
+         * @param string $name Name of the item
+         * @param int $qty Item qty to add to the cart
+         * @param float $price Price of one item
+         * @param array $options Array of additional options, such as 'size' or 'color'
+         * @static 
+         */
+        public static function add($id, $name = null, $qty = null, $price = null, $options = array()){
+            return \Gloudemans\Shoppingcart\Cart::add($id, $name, $qty, $price, $options);
+        }
+        
+        /**
+         * Update the quantity of one row of the cart
+         *
+         * @param string $rowId The rowid of the item you want to update
+         * @param integer|array $attribute New quantity of the item|Array of attributes to update
+         * @return boolean 
+         * @static 
+         */
+        public static function update($rowId, $attribute){
+            return \Gloudemans\Shoppingcart\Cart::update($rowId, $attribute);
+        }
+        
+        /**
+         * Remove a row from the cart
+         *
+         * @param string $rowId The rowid of the item
+         * @return boolean 
+         * @static 
+         */
+        public static function remove($rowId){
+            return \Gloudemans\Shoppingcart\Cart::remove($rowId);
+        }
+        
+        /**
+         * Get a row of the cart by its ID
+         *
+         * @param string $rowId The ID of the row to fetch
+         * @return \Gloudemans\Shoppingcart\Gloudemans\Shoppingcart\CartCollection 
+         * @static 
+         */
+        public static function get($rowId){
+            return \Gloudemans\Shoppingcart\Cart::get($rowId);
+        }
+        
+        /**
+         * Get the cart content
+         *
+         * @return \Gloudemans\Shoppingcart\Gloudemans\Shoppingcart\CartRowCollection 
+         * @static 
+         */
+        public static function content(){
+            return \Gloudemans\Shoppingcart\Cart::content();
+        }
+        
+        /**
+         * Empty the cart
+         *
+         * @return boolean 
+         * @static 
+         */
+        public static function destroy(){
+            return \Gloudemans\Shoppingcart\Cart::destroy();
+        }
+        
+        /**
+         * Get the price total
+         *
+         * @return float 
+         * @static 
+         */
+        public static function total(){
+            return \Gloudemans\Shoppingcart\Cart::total();
+        }
+        
+        /**
+         * Get the number of items in the cart
+         *
+         * @param boolean $totalItems Get all the items (when false, will return the number of rows)
+         * @return int 
+         * @static 
+         */
+        public static function count($totalItems = true){
+            return \Gloudemans\Shoppingcart\Cart::count($totalItems);
+        }
+        
+        /**
+         * Search if the cart has a item
+         *
+         * @param array $search An array with the item ID and optional options
+         * @return array|boolean 
+         * @static 
+         */
+        public static function search($search){
+            return \Gloudemans\Shoppingcart\Cart::search($search);
         }
         
     }
