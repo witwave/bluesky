@@ -7,44 +7,46 @@
 		<div class="col-md-9">
 			<!-- Breadcrumb Starts -->
 			<ol class="breadcrumb">
-				<li><a href="index.html">首页</a></li>
-				<li><a href="category-list.html">目录</a></li>
-				<li class="active">商品</li>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="category-list.html">Category</a></li>
+				<li class="active">Product</li>
 			</ol>
 			<!-- Breadcrumb Ends -->
 			<!-- Product Info Starts -->
 			<div class="row product-info">
 				<!-- Left Starts -->
-				
 				<div class="col-sm-5 images-block">
-					 @if ($product->images && count($product->images)>0)
 					<p>
-						<img src="/{{ $imagine->getUrl($product->images[0]->path,'medium')}}" alt="{{ $product->name }}" class="img-responsive thumbnail"/>
+						<img src="images/product-images/pimg3.jpg" alt="Image" class="img-responsive thumbnail" />
 					</p>
 					<ul class="list-unstyled list-inline">
-						@foreach($product->images as $index=>$img)
-						@if ($index>0 && $index<3)
 						<li>
-							<img src="/{{ $imagine->getUrl($img->path)}}" alt="{{ $product->name }}"  class="img-responsive thumbnail">
+							<img src="images/product-images/thumb1.jpg" alt="Image" class="img-responsive thumbnail" />
 						</li>
-						@endif
-						@endforeach
+						<li>
+							<img src="images/product-images/thumb2.jpg" alt="Image" class="img-responsive thumbnail" />
+						</li>
+						<li>
+							<img src="images/product-images/thumb3.jpg" alt="Image" class="img-responsive thumbnail" />
+						</li>
+						<li>
+							<img src="images/product-images/thumb4.jpg" alt="Image" class="img-responsive thumbnail" />
+						</li>
 					</ul>
-				   @endif
 				</div>
 				<!-- Left Ends -->
 				<!-- Right Starts -->
 				<div class="col-sm-7 product-details">
 					<!-- Product Name Starts -->
-					<h2>{{$product->name}}</h2>
+					<h2>Wedding Decoration</h2>
 					<!-- Product Name Ends -->
 					<hr />
 					<!-- Manufacturer Starts -->
 					<ul class="list-unstyled manufacturer">
 						<li>
-							<span>品牌:</span> Indian spices
+							<span>Brand:</span> Indian spices
 						</li>
-						<li><span>积分:</span> 300</li>
+						<li><span>Reward Points:</span> 300</li>
 						<li>
 							<span>Availability:</span> <strong class="label label-success">In Stock</strong>
 						</li>
@@ -53,15 +55,15 @@
 					<hr />
 					<!-- Price Starts -->
 					<div class="price">
-						<span class="price-head">价格 :</span>
-						<span class="price-new">￥{{$product->price}}</span>
+						<span class="price-head">Price :</span>
+						<span class="price-new">$199.50</span>
 					</div>
 					<!-- Price Ends -->
 					<hr />
 					<!-- Available Options Starts -->
 					<div class="options">
 						<div class="form-group">
-							<label class="control-label text-uppercase" for="input-quantity">数量:</label>
+							<label class="control-label text-uppercase" for="input-quantity">Qty:</label>
 							<input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
 						</div>
 						<div class="cart-button button-group">
@@ -72,7 +74,7 @@
 							<i class="fa fa-bar-chart-o"></i>
 							</button>
 							<button type="button" class="btn btn-cart">
-							加入购物车
+							Add to cart
 							<i class="fa fa-shopping-cart"></i>
 							</button>
 						</div>
@@ -85,15 +87,20 @@
 			<!-- product Info Ends -->
 			<!-- Product Description Starts -->
 			<div class="product-info-box">
-				<h4 class="heading">描述</h4>
+				<h4 class="heading">Description</h4>
 				<div class="content panel-smart">
-					{{$product->description}}
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+					</p>
+					<p>
+						It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+					</p>
 				</div>
 			</div>
 			<!-- Product Description Ends -->
 			<!-- Additional Information Starts -->
 			<div class="product-info-box">
-				<h4 class="heading">附加信息</h4>
+				<h4 class="heading">Additional Information</h4>
 				<div class="content panel-smart">
 					<p>
 						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -103,7 +110,7 @@
 			<!-- Additional Information Ends -->
 			<!-- Related Products Starts -->
 			<div class="product-info-box">
-				<h4 class="heading">相似商品</h4>
+				<h4 class="heading">Related Products</h4>
 				<!-- Products Row Starts -->
 				<div class="row">
 					<!-- Product #1 Starts -->
@@ -129,7 +136,7 @@
 									<i class="fa fa-bar-chart-o"></i>
 									</button>
 									<button type="button" class="btn btn-cart">
-									加入购物车
+									Add to cart
 									<i class="fa fa-shopping-cart"></i>
 									</button>
 								</div>
@@ -236,9 +243,54 @@
 				</a>
 			</div>
 			<!-- Categories Links Ends -->
-			
+			<!-- Shopping Options Starts -->
+			<h3 class="side-heading">Shopping Options</h3>
+			<div class="list-group">
+				<div class="list-group-item">
+					Brands
+				</div>
+				<div class="list-group-item">
+					<div class="filter-group">
+						<label class="checkbox">
+							<input name="filter1" type="checkbox" value="br1" checked="checked" />
+							Brand Name 1
+						</label>
+						<label class="checkbox">
+							<input name="filter2" type="checkbox" value="br2" />
+							Brand Name 2
+						</label>
+						<label class="checkbox">
+							<input name="filter2" type="checkbox" value="br2" />
+							Brand Name 3
+						</label>
+					</div>
+				</div>
+				<div class="list-group-item">
+					Manufacturer
+				</div>
+				<div class="list-group-item">
+					<div class="filter-group">
+						<label class="radio">
+							<input name="filter-manuf" type="radio" value="mr1" checked="checked" />
+							Manufacturer Name 1
+						</label>
+						<label class="radio">
+							<input name="filter-manuf" type="radio" value="mr2" />
+							Manufacturer Name 2
+						</label>
+						<label class="radio">
+							<input name="filter-manuf" type="radio" value="mr3" />
+							Manufacturer Name 3
+						</label>
+					</div>
+				</div>
+				<div class="list-group-item">
+					<button type="button" class="btn btn-main">Filter</button>
+				</div>
+			</div>
+			<!-- Shopping Options Ends -->
 			<!-- Bestsellers Links Starts -->
-			<h3 class="side-heading">热门推荐</h3>
+			<h3 class="side-heading">Bestsellers</h3>
 			<div class="product-col">
 				<div class="image">
 					<img src="images/product-images/pimg1.jpg" alt="product" class="img-responsive" />

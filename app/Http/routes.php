@@ -46,9 +46,7 @@ Route::get('/blog/{id}.html', function () {
 	return view('blog.view');
 });
 
-Route::get('/product/{id}.html', function () {
-	return view('product.view');
-});
+Route::get('/product/{id}.html', 'ProductController@view');
 
 Route::get('/product2/{id}', function () {
 	return view('product.view-full');
