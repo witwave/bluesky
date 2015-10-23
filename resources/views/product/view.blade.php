@@ -42,12 +42,10 @@
 					<!-- Manufacturer Starts -->
 					<ul class="list-unstyled manufacturer">
 						<li>
-							<span>品牌:</span> Indian spices
+							<span>品牌:</span> {{$product->brand}}
 						</li>
-						<li><span>积分:</span> 300</li>
-						<li>
-							<span>Availability:</span> <strong class="label label-success">In Stock</strong>
-						</li>
+						<li><span>积分:</span> {{$product->credit}}</li>
+						<li><span>花材:</span> {{$product->material}}</li>
 					</ul>
 					<!-- Manufacturer Ends -->
 					<hr />
@@ -87,7 +85,7 @@
 			<div class="product-info-box">
 				<h4 class="heading">描述</h4>
 				<div class="content panel-smart">
-					{{$product->description}}
+					{!!$product->long_description!!}
 				</div>
 			</div>
 			<!-- Product Description Ends -->
@@ -96,7 +94,7 @@
 				<h4 class="heading">附加信息</h4>
 				<div class="content panel-smart">
 					<p>
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+						{{$product->ship_description}}
 					</p>
 				</div>
 			</div>
@@ -208,7 +206,7 @@
 		<!-- Sidebar Starts -->
 		<div class="col-md-3">
 			<!-- Categories Links Starts -->
-			<h3 class="side-heading">Categories</h3>
+			<h3 class="side-heading">目录</h3>
 			<div class="list-group">
 				<a href="category-grid.html" class="list-group-item">
 					<i class="fa fa-chevron-right"></i>

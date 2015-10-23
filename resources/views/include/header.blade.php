@@ -13,7 +13,7 @@
           <!-- v-centered -->
           <div class="vcenter-this">
             <a href="index.html">
-              <img src="images/logo1.png" alt="BELOVED">
+              <img src="/images/logo1.png" alt="BELOVED">
             </a>
           </div>
           <!-- v-centered -->
