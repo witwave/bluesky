@@ -22,7 +22,7 @@
         <!-- Preloader
         ============================================ -->
         <div class="page-preloader">
-            <div class="vcenter"> <div class="vcenter-this"><img class="anim" src="images/loader.gif" alt="loading..." /></div></div>
+            <div class="vcenter"> <div class="vcenter-this"><img class="anim" src="/images/loader.gif" alt="loading..." /></div></div>
         </div>
         <!-- /Preloader
         ============================================ -->

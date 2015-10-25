@@ -153,11 +153,11 @@
               <!-- Navbar Center -->
               <ul class="nav navbar-nav navbar-center line-top case-c">
                 <li class="active" ><a href="/">首页</a></li>
-                <li><a href="category.html">当季新品</a></li>
-                <li><a href="category.html">蓓爱之选</a></li>
-                <li><a href="category.html">花礼</a></li>
-                <li><a href="category.html">爱品</a></li>
-                <li><a href="category.html">动态</a></li>
+                <li><a href="/category.html">当季新品</a></li>
+                <li><a href="/category.html">蓓爱之选</a></li>
+                <li><a href="/category.html">花礼</a></li>
+                <li><a href="/category.html">爱品</a></li>
+                <li><a href="/category.html">动态</a></li>
               </ul>
               <!-- /Navbar Center -->
 

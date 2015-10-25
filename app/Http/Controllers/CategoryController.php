@@ -37,22 +37,25 @@ class CategoryController extends Controller {
     }
 
 	public function index() {
-		$product = Product::findOrFail(1);
+
         $categories = DB::select('select id,category_id,name from categories where active=1');
-       
-              $list=array();
+
+        $list=array();
         foreach ($categories as $key => $data) {
                $list[$key]=(array)$data;
-            }
-             var_dump($list);
-        $tree = $this->list_to_tree($list,'id','category_id','_child',NULL);
-  
-        print_r($tree);
-exit();
+        }
 
-		return view('product.view',
+        $products = Product::where('active', 1)
+            ->orderBy('created_at', 'desc')
+            ->take(8)
+            ->get();
+
+        $tree = $this->list_to_tree($list,'id','category_id','_child',NULL);
+
+		return view('product.list',
 			[
-				'product' => $product,
+				'products' => $products,
+                'category' =>$tree,
 				'imagine' => new RImage()
 			]
 		);

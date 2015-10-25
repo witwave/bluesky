@@ -27,7 +27,7 @@ Route::group(['namespace' => 'Auth'], function () {
 
 });
 
-Route::get('/category.html','CategoryController@index');
+Route::get('/category.html','ProductController@index');
 
 Route::get('/product.html', function () {
 	return view('sale.product');
