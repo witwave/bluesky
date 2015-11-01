@@ -28,13 +28,21 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 Route::get('/category.html','ProductController@index');
+Route::get('/category-{id}.html','ProductController@index');
 
 Route::get('/product.html', function () {
 	return view('sale.product');
 });
 
 Route::get('/cart.html', 'CartController@index');
+
+Route::post('/cart/update','CartController@update');
+Route::post('/cart/remove','CartController@remove');
+
 Route::get('/checkout.html', 'SaleController@checkout');
+
+Route::post('/ajax/region', 'AjaxController@region');
+
 
 Route::get('/blog.html', function () {
 	return view('blog.list');

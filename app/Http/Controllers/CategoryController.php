@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Auth;
 use DB;
+use Cart;
 class CategoryController extends Controller {
 
 
@@ -56,7 +57,9 @@ class CategoryController extends Controller {
 			[
 				'products' => $products,
                 'category' =>$tree,
-				'imagine' => new RImage()
+				'imagine' => new RImage(),
+                'cart'=>Cart::content()
+
 			]
 		);
 	}

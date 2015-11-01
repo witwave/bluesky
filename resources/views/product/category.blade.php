@@ -157,8 +157,8 @@
                             @foreach($categories as $category)
                             <li>
                                 @if(isset($category['_child']))
-                                    <a href="#"><i class="icon fa fa-angle-right"></i>{{$category['name']}}</a><i class="toggler ti ti-plus"></i>
-
+                                    <a href="javascript:void(0) "><i class="icon fa fa-angle-right"></i>{{$category['name']}}</a>
+                                    <i class="toggler ti ti-plus"></i>
                                     <ul>
                                         @foreach($category['_child'] as $item)
                                             <li><a href="/category-{{$item['id']}}.html"><i class="icon fa fa-angle-right"></i>{{ $item['name'] }}</a></li>
@@ -179,7 +179,6 @@
                     <div class="side-widget no-margin-l">
 
                         <h5 class="boxed-title">价格范围</h5>
-
                         <!-- Price Range Form -->
                         <form class="side-form-panel" action="/category.html">
                             <label>最小价</label>
@@ -195,19 +194,14 @@
                             <button class="btn btn-outline btn-block" type="submit">查找</button>
                         </form>
                         <!-- /Price Range Form -->
-
                     </div>
                     <!-- /Side Widget -->
-
                 </div>
                 <!-- /Side Col -->
-
             </div>
             <!-- /Row -->
-
         </div>
         <!-- /Container -->
-
     </section>
 @endsection
 

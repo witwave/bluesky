@@ -94,7 +94,7 @@
                             <li><a href="#"><i class="icon fa fa-star"></i></a></li>
                         </ul>
                         <!-- /hlinks -->
-                        <span class="text">浏览{{$product->pv}}</span>
+                        <span class="text">浏览: {{$product->pv}}</span>
                     </div>
 
                     <h3 class="product-title">{{$product->name}}</h3>
@@ -289,7 +289,7 @@
 
                         <hr>
 
-                        <h4 class="case-c">add comment</h4>
+                        <h4 class="case-c">发表评论</h4>
 
                         <!-- Comment Form -->
                         <div class="contact-form">
@@ -317,7 +317,7 @@
                                     <textarea placeholder="You Message..." class="form-control" rows="8"></textarea>
                                 </div>
 
-                                <button class="btn btn-default  btn-bigger" type="submit">Submit comment</button>
+                                <button class="btn btn-default  btn-bigger" type="submit">发表</button>
                             </form>
                         </div>
                         <!-- /Contact Form -->
@@ -330,26 +330,22 @@
                         <!-- Side Widget -->
                         <div class="side-widget">
 
-                            <h5 class="boxed-title">similar products</h5>
+                            <h5 class="boxed-title">相似商品</h5>
 
                             <!-- Slider Wrapper -->
                             <div class="side-products-slider bx-controls-above-right product-no-margin">
 
                                 <!-- BxSlider -->
-                                <div style="max-width: 100%; margin: 0px auto;" class="bx-wrapper size-xs">
-                                    <div style="width: 100%; overflow: hidden; position: relative; height: 479px;"
-                                         class="bx-viewport">
-                                        <div style="width: 415%; position: relative; transition-duration: 0s; transform: translate3d(-263px, 0px, 0px);"
-                                             class="bxslider" data-call="bxslider" data-options="{pager:false}">
-                                            <div style="float: left; list-style: outside none none; position: relative; width: 263px;"
-                                                 class="slide bx-clone">
+                                <div  class="bx-wrapper size-xs">
+                                    <div class="bx-viewport">
+                                        <div class="bxslider" data-call="bxslider" data-options="{pager:false}">
+                                            <div class="slide bx-clone">
                                                 <!-- product -->
                                                 <div class="product clearfix">
 
                                                     <!-- Image -->
                                                     <div class="image">
-                                                        <a href="product.html" class="main"><img
-                                                                    src="images/products/product8.jpg" alt=""></a>
+                                                        <a href="product.html" class="main"><img src="images/products/product8.jpg" alt=""></a>
                                                         <ul class="additional">
                                                             <li><a href="images/products/product8.jpg"
                                                                    data-gal="prettyPhoto[gallery 8]"
@@ -410,11 +406,8 @@
 
                                                         <!-- buttons -->
                                                         <div class="btn-group">
-                                                            <a class="btn btn-outline btn-base-hover"
-                                                               href="product.html">add
-                                                                to cart</a>
-                                                            <a class="btn btn-outline btn-default-hover"
-                                                               href="product.html"><i class="icon fa fa-heart"></i></a>
+                                                            <a class="btn btn-outline btn-base-hover" href="product.html">加入购物车</a>
+                                                            <a class="btn btn-outline btn-default-hover"  href="product.html"><i class="icon fa fa-heart"></i></a>
                                                         </div>
                                                         <!-- /buttons -->
 
@@ -511,8 +504,7 @@
                                             <!-- /Slide -->
 
                                             <!-- Slide -->
-                                            <div style="float: left; list-style: outside none none; position: relative; width: 263px;"
-                                                 class="slide">
+                                            <div class="slide">
                                                 <!-- product -->
                                                 <div class="product clearfix">
 
@@ -596,7 +588,7 @@
                                             </div>
                                             <!-- /Slide -->
 
-                                            <div style="float: left; list-style: outside none none; position: relative; width: 263px;"
+                                            <div
                                                  class="slide active bx-clone">
                                                 <!-- product -->
                                                 <div class="product clearfix">
@@ -681,10 +673,6 @@
                                         </div>
                                     </div>
                                     <div class="bx-controls bx-has-controls-direction">
-                                        <div class="bx-controls-direction"><a class="bx-prev" href=""></a><a
-                                                    class="bx-next"
-                                                    href=""></a>
-                                        </div>
                                     </div>
                                 </div>
                                 <!-- /BxSlider -->

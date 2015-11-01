@@ -56,7 +56,7 @@
                     <li><a href="#"><i class="icon fa fa-star"></i></a></li>
                   </ul>
                   <!-- /rating -->
-                  <p class="desc">{{ $item->short_description}}.</p>
+                  <p class="desc">{{ $item->short_description}}</p>
                   <!-- Price Box -->
                   <div class="price-box">
                     @if ($item->market_price)
@@ -67,7 +67,7 @@
                   <!-- /Price Box -->
                   <!-- buttons -->
                   <div class="btn-group">
-                    <a class="btn btn-outline btn-base-hover" href="cart.html">加入到购物车</a>
+                    <a class="btn btn-outline btn-base-hover" href="/cart.html?id={{$item->id}}">加入到购物车</a>
                     <!-- <a class="btn btn-outline btn-default-hover" href="product.html"><i class="icon fa fa-heart"></i></a>-->
                   </div>
                   <!-- /buttons -->
@@ -136,7 +136,7 @@
                   <!-- /Price Box -->
                   <!-- buttons -->
                   <div class="btn-group">
-                    <a class="btn btn-outline btn-base-hover" href="cart.html">加入到购物车</a>
+                    <a class="btn btn-outline btn-base-hover" href="cart.html?id={{$item->id}}">加入到购物车</a>
                     <!-- <a class="btn btn-outline btn-default-hover" href="product.html"><i class="icon fa fa-heart"></i></a>-->
                   </div>
                   <!-- /buttons -->

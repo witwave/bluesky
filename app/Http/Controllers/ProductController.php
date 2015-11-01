@@ -4,21 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Helpers\RImage;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Auth;
 use DB;
+use Cart;
 
 class ProductController extends Controller {
 
 
-	public function index() {
-		$products = Product::paginate(9);
+	public function index($id=null) {
+        $temp=Product::where('active', '=', 1);
+        $pid=null;
+        if ($id){
+            $temp=$temp->where('category_id','=',$id);
+            //$pid=Category::where('id','=',$id)->firstOrFail()->category_id;
+        }
+        $products = $temp->paginate(9);
 
 		return view('product.category',
 			[
 				'products' => $products,
 				'categories' =>$this->getCategories(1),
-				'imagine' => new RImage()
+				'imagine' => new RImage(),
+                'id'=>$pid,
+                'cart'=>Cart::content()
 			]
 		);
 	}
@@ -30,7 +40,8 @@ class ProductController extends Controller {
 			[
 				'product' => $product,
 				'imagine' => new RImage(),
-                'categories' =>$this->getCategories(1)
+                'categories' =>$this->getCategories(1),
+                'cart'=>Cart::content()
 			]
 		);
 	}

@@ -180,42 +180,38 @@
         </div>
         <!-- /Btn Wrapper -->
         <!-- Btn Wrapper -->
+        <?php $cart=Cart::content()?>
         <div class="btn-wrapper dropdown">
-          <a aria-expanded="false" class="btn btn-outline" data-toggle="dropdown"><b class="count count-round">2</b><i class="ti ti-bag"></i></a>
+          <a aria-expanded="false" class="btn btn-outline" data-toggle="dropdown">
+            @if ($count=count($cart)>0)
+            <b class="count count-round">{{$count}}</b><i class="ti ti-bag"></i>
+              @endif
+          </a>
           <!-- Dropdown Panel -->
           <div class="dropdown-menu dropdown-panel dropdown-right" data-keep-open="true">
-            <section>
+
+            @if (count($cart)>0)
+             <section>
               <!-- Mini Cart -->
               <ul class="mini-cart">
+                @foreach($cart as $row)
                 <!-- Item -->
                 <li class="clearfix">
-                  <img src="images/products/product1.jpg" alt="">
+                  <img src="{{ $row->options->image}}" alt="{{ $row->name }}">
                   <div class="text">
-                    <a class="title" href="#">热恋----红玫瑰50枝</a>
-                    <div class="details">1 x ￥240.50
-                      <div class="btn-group">
+                    <a class="title" href="/product/{{$row->id}}.html">{{$row->name}}</a>
+                    <div class="details">{{$row->qty}} x ￥{{$row->price}}
+                      <div class="btn-group hide">
                         <a class="btn btn-primary" href="#"><i class="fa fa-pencil"></i></a>
                         <a class="btn btn-default" href="#"><i class="fa fa-trash"></i></a>
                       </div>
                     </div>
                   </div>
                 </li>
-                <!-- /Item -->
-                <!-- Item -->
-                <li class="clearfix">
-                  <img src="images/products/product2.jpg" alt="">
-                  <div class="text">
-                    <a class="title" href="#">夏之物语----香槟玫瑰50枝</a>
-                    <div class="details">1 x ￥95.00
-                      <div class="btn-group">
-                        <a class="btn btn-primary" href="#"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-default" href="#"><i class="fa fa-trash"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                @endforeach
                 <!-- /Item -->
               </ul>
+
               <!-- /Mini Cart -->
             </section>
             <section>
@@ -228,6 +224,9 @@
                 </div>
               </div>
             </section>
+            @else
+              <section><p></p><span>您的购物车为空</span></p></section>
+            @endif
           </div>
           <!-- /Dropdown Panel -->
         </div>

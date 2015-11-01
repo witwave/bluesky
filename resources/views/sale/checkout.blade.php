@@ -252,8 +252,8 @@
           <table>
             <tbody>
               <tr>
-                <td>(6) 商品</td>
-                <td class="price">￥550.00</td>
+                <td>商品</td>
+                <td class="price">￥{{Cart::total()}}</td>
               </tr>
               <tr>
                 <td>运费</td>
@@ -261,11 +261,11 @@
               </tr>
               <tr class="total">
                 <td> 总计 </td>
-                <td class="price">￥615.00</td>
+                <td class="price">￥{{Cart::total()}}</td>
               </tr>
             </tbody>
           </table>
-          <button class="btn btn-default btn-block btn-bigger">继续购买</button>
+          <a class="btn btn-default btn-block btn-bigger" href="/">继续购买</a>
           <button class="btn btn-primary btn-block btn-bigger">提交订单</button>
         </div>
         <!-- /Side Widget -->

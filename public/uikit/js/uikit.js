@@ -4479,4 +4479,85 @@ $(window).load(function() {
 	})
 }), $().ready(function() {
 
+	var init=function(){
+		if ($('#cart').html()=='undefined'){
+			return ;
+		}
+		var th=$('#cart>thead>tr>th').not('[class="hidden-xs"]').length;
+		var width=$('#cart').width();
+		if (width<718){
+			$('#cart>tfoot>tr>td.terms').attr('colspan',1);
+		}else{
+			$('#cart>tfoot>tr>td.terms').attr('colspan',3);
+		}
+	};
+	init();
+	$(window).resize(init);
+
+	$('table.cart-contents input[name="qty"]').change(function(){
+		var qty=$(this).val();
+		var id=$(this).attr('data');
+		post('/cart/update', {qty:qty,id:id},
+			function(data){
+				document.location.reload()
+			}
+		);
+	});
+
+	$('table.cart-contents button[name="delete"]').click(function(){
+		var id=$(this).attr('data');
+		post('/cart/remove', {id:id},
+			function(data){
+				console.log(data);
+				document.location.reload()
+			},function(xhr,status){
+
+			}
+		);
+	});
+
+	$('#province').change(function(){
+		var v=$(this).val();
+		if (v!=''){
+			post('/ajax/region',{code:v},function(data){
+				if (!data){
+					return ;
+				}
+				var city=$('#city').html('<option value="">请选择</option>');
+				data.forEach(function(item,i){
+					city.append('<option value="'+item.region_code+'">'+item.region_name+'</option>')
+				})
+			});
+		}
+	});
+
+	$('#city').change(function(){
+		var v=$(this).val();
+		if (v!=''){
+			post('/ajax/region',{code:v},function(data){
+				if (!data){
+					return ;
+				}
+				var city=$('#town').html('<option value="">请选择</option>');
+				data.forEach(function(item,i){
+					city.append('<option value="'+item.region_code+'">'+item.region_name+'</option>')
+				})
+			});
+		}
+	});
+
+	var post=function(url,data,success,error){
+		console.log(data);
+		$.ajax({
+			type: 'POST',
+			url: url,
+			data:data,
+			dataType: 'json',
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+			},
+			success: success,
+			error: error
+		});
+	};
 });
