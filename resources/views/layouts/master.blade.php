@@ -13,6 +13,7 @@
         <!-- Custom styles for this template
         ================================================== -->
         <link href="/uikit/css/uikit.css" rel="stylesheet">
+        <link href="/assets/css/timepicki.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
         <script src="/uikit/js/html5shiv.js"></script>
@@ -39,7 +40,9 @@
         <!-- Javascript
         ================================================== -->
         <script src="/uikit/js/jquery-latest.min.js"></script>
+        <script src="/assets/js/timepicki.js"></script>
         <script src="/uikit/js/uikit.js"></script>
+
         <!-- /JavaScript
         ================================================== -->
     </body>

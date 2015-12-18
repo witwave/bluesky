@@ -184,7 +184,7 @@
         <div class="btn-wrapper dropdown">
           <a aria-expanded="false" class="btn btn-outline" data-toggle="dropdown">
             @if ($count=count($cart)>0)
-            <b class="count count-round">{{$count}}</b><i class="ti ti-bag"></i>
+            <b class="count count-round">{{$count}}</b><i class="glyphicon glyphicon-shopping-cart"></i>
               @endif
           </a>
           <!-- Dropdown Panel -->

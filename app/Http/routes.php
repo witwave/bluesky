@@ -40,9 +40,9 @@ Route::post('/cart/update','CartController@update');
 Route::post('/cart/remove','CartController@remove');
 
 Route::get('/checkout.html', 'SaleController@checkout');
-
+Route::post('/checkout', 'SaleController@store');
 Route::post('/ajax/region', 'AjaxController@region');
-
+Route::post('/ajax/partner', 'AjaxController@partner');
 
 Route::get('/blog.html', function () {
 	return view('blog.list');
@@ -59,6 +59,10 @@ Route::get('/product2/{id}', function () {
 });
 
 Route::group(['middleware' => 'auth', 'namespace' => 'User'], function () {
-	Route::get('user/profile', 'ProfileController@show');
-	Route::get('user/order', 'OrderController@show');
+	Route::get('user/profile', 'UserController@profile');
+	Route::get('user/order', 'UserController@order');
+	Route::get('user/credit', 'UserController@credit');
+	Route::get('user/address', 'UserController@address');
+	Route::get('user/day', 'UserController@day');
+	Route::get('user/password', 'UserController@password');
 });

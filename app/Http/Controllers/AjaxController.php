@@ -16,5 +16,19 @@ class AjaxController extends Controller
         $code = Input::get('code');
         if (is_numeric($code))
             return RegionHelper::getRegion($code);
+        else {
+            return array();
+        }
+    }
+
+
+    public function partner()
+    {
+        $code = Input::get('code');
+        if (is_numeric($code)) {
+            return RegionHelper::getPartner($code);
+        } else {
+            return array();
+        }
     }
 }

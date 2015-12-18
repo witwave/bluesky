@@ -36,7 +36,18 @@
         <div class="container cont-pad-y-sm">
             <!-- Row -->
             <div class="row">
+                <form method="POST" action="/checkout">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="col-md-12">
+
                     <div class="panel panel-default">
                         <div class="panel-heading">填写订单信息</div>
                         <div class="panel-body">
@@ -44,14 +55,14 @@
 
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <form class="form-horizontal">
+                                    <div class="form-horizontal" name="fmAddress">
                                         <div class="form-group">
                                             <label for="inputReceiver"
                                                    class="col-sm-2 col-md-2  control-label">收货人</label>
 
                                             <div class="col-sm-10 col-md-4 ">
                                                 <input type="text" name="receiver" class="form-control"
-                                                       id="inputReceiver" placeholder="">
+                                                       id="receiver_name" name="receiver_name"  placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -60,7 +71,7 @@
                                             <div class="col-sm-10">
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <select class="form-control" id="province" name="province">
+                                                        <select class="form-control" id="receiver_province" name="receiver_province" data="province" ref="#receiver_city">
                                                             <option value="">请选择</option>
                                                             @foreach($province as $item)
                                                                 <option value="{{$item->region_code}}">{{$item->region_name}}</option>
@@ -68,12 +79,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <select class="form-control" id="city" name="city">
-                                                            <option value="">请选择</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-4 hide">
-                                                        <select class="form-control" id="town" name="town">
+                                                        <select class="form-control" id="receiver_city" name="receiver_city">
                                                             <option value="">请选择</option>
                                                         </select>
                                                     </div>
@@ -84,49 +90,50 @@
                                             <label for="address" class="col-sm-2 control-label">详细地址</label>
 
                                             <div class="col-sm-10">
-                                                <input type="text" name="address" class="form-control" id="address"
-                                                       placeholder="">
+                                                <input type="text" name="receiver_address" class="form-control" id="receiver_address" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="mobile" class="col-sm-2 col-md-2 control-label">手机号码</label>
 
                                             <div class="col-sm-10 col-md-4">
-                                                <input type="text" name="mobile" class="form-control" id="mobile">
+                                                <input type="text" name="receiver_mobile" class="form-control" id="receiver_mobile">
                                             </div>
-                                            <label for="phone" class="col-sm-2 col-md-2 control-label">电话</label>
 
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone" class="col-sm-2 col-md-2 control-label">电话</label>
                                             <div class="col-sm-10 col-md-4">
-                                                <input type="text" name="phone" class="form-control" id="phone">
+                                                <input type="text" name="receiver_phone" class="form-control" id="receiver_phone">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-default">保存收货人信息</button>
+                                                <button type="button" class="btn btn-danger">保存收货人信息</button>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                             <strong>订购人信息</strong>
 
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <form class="form-inline">
+                                    <div class="form-inline">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="name" placeholder="您的姓名"
-                                                   style="margin-right:10px">
+                                            <input type="text" class="form-control" id="booker_name" name="booker_name" placeholder="您的姓名"
+                                                   style="margin-right:5px">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="您的联系电话"
-                                                   style="margin-right:10px">
+                                            <input type="text" class="form-control" placeholder="您的联系电话" id="booker_phone" name="booker_phone"
+                                                   style="margin-right:5px">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="email" placeholder="您的电子邮箱"
-                                                   style="margin-right:10px">
+                                            <input type="email" class="form-control" placeholder="您的电子邮箱" id="booker_email" name="booker_email"
+                                                   style="margin-right:5px">
                                         </div>
-                                        <button type="submit" class="btn btn-danger">确定</button>
-                                    </form>
+                                        <button type="button" class="btn btn-danger">确定</button>
+                                    </div>
                                 </div>
                             </div>
                             <strong>配送信息</strong>
@@ -134,41 +141,41 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="row">
-                                        <form>
+                                        <div>
                                         <div class="form-group col-sm-2">
                                             <label>配送日期</label>
-                                            <input type="text" class="form-control input-sm" placeholder="">
+                                            <input type="text"  name="require_send_day" value="{{ $require_send_day }}" class="form-control input-sm" data-call="jui-datepicker" placeholder="" data-options="{{ $date_picker_options }}">
                                         </div>
                                         <div class="form-group col-sm-10">
                                             <label>配送时段</label>
                                             <div>
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 不限
+                                                    <input type="radio" name="require_send_type" id="require_send_type" value="不限" checked> 不限
                                                 </label>
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 上午
+                                                    <input type="radio" name="require_send_type" id="require_send_type" value="上午"> 上午
                                                 </label>
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 下午
+                                                    <input type="radio" name="require_send_type" id="require_send_type" value="下午"> 下午
                                                 </label>
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 晚上
+                                                    <input type="radio" name="require_send_type" id="require_send_type" value="晚上"> 晚上
                                                 </label>
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 定时
+                                                    <input type="radio" name="require_send_type" id="require_send_type" value="定时"> 定时
                                                 </label>
-                                                <label class="radio-inline"><input type="text" class="form-control input-sm" placeholder=""></label>
+                                                <label class="radio-inline"><input type="text"  class="form-control input-sm"  name="require_send_time" id="require_send_time" placeholder=""></label>
                                             </div>
                                         </div>
                                             <div class="form-group col-sm-12">
                                                 <label>贺卡内容</label>
-                                                <textarea class="form-control" rows="3" placeholder="如需署名,请写在留言后面"></textarea>
+                                                <textarea class="form-control" rows="3" name="card" placeholder="如需署名,请写在留言后面"></textarea>
                                             </div>
                                             <div class="form-group col-sm-12">
                                                 <label>留言</label>
-                                                <input class="form-control"  placeholder="如有特殊要求请注明,我们尽量满足，120字以内:)"></input>
+                                                <input class="form-control" name="special_content" placeholder="如有特殊要求请注明,我们尽量满足，120字以内:)"/>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -183,10 +190,10 @@
                                             <div class="col-sm-10">
                                                 <div class="radio">
                                                     <label class="radio-line">
-                                                        <input value="" name="shipping-opt" type="radio" checked="true">送货上门
+                                                        <input value="" name="self_get" type="radio" checked="true" value="false">送货上门
                                                     </label>
                                                     <label class="radio-line">
-                                                        <input value="" name="shipping-opt" type="radio">上门自取
+                                                        <input value="" name="self_get" type="radio" value="true">上门自取
                                                     </label>
                                                 </div>
                                             </div>
@@ -197,7 +204,7 @@
                                             <div class="col-sm-10">
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <select class="form-control" id="store_province" name="store_province">
+                                                        <select class="form-control" id="store_province" name="store_province" ref="#store_city" data="province">
                                                             <option value="">请选择</option>
                                                             @foreach($province as $item)
                                                                 <option value="{{$item->region_code}}">{{$item->region_name}}</option>
@@ -205,7 +212,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <select class="form-control" id="store_city" name="store_city">
+                                                        <select class="form-control" id="store_city" data="partner" ref="#partner_id">
                                                             <option value="">请选择</option>
                                                         </select>
                                                     </div>
@@ -213,7 +220,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <br/>
-                                                        <select class="form-control" id="store" name="store">
+                                                        <select class="form-control" id="partner_id" name="partner_id">
                                                             <option value="">请选择门店</option>
                                                         </select>
                                                     </div>
@@ -226,14 +233,14 @@
                                             <div class="col-sm-10">
                                                 <div class="radio">
                                                     <label>
-                                                        <input value="" name="pay-opt" type="radio" checked="">支付宝
+                                                        <input value="支付宝" name="pay_type" type="radio" checked>支付宝
                                                     </label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input value="" name="pay-opt" type="radio">微信支付</label>
+                                                    <label><input value="微信支付" name="pay_type" type="radio" disabled>微信支付 <small>(紧张开发中)</small></label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input value="" name="pay-opt" type="radio">网银</label>
+                                                    <label><input value="网银" name="pay_type" type="radio" disabled>网银 <small>(紧张开发中)</small></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -314,13 +321,17 @@
 
                     </div>
                     <div class="cart-buttons clearfix">
-                        <a class="btn btn-base checkout" href="checkout.html"><i
-                                    class="icon-left fa fa-shopping-cart"></i>提交订单</a>
+                        <button type="submit" class="btn btn-base checkout"><i class="icon-left fa fa-shopping-cart"></i>提交订单</button>
                         <a class="btn btn-primary checkout" href="cart.html"><i class="icon-left fa fa-arrow-left"></i>修改购物车</a>
                     </div>
 
                 </div>
+                </form>
             </div>
+
         </div>
     </section>
+    <script type="javascript">
+
+    </script>
 @endsection

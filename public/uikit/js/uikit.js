@@ -4433,6 +4433,8 @@ var pp_alreadyInitialized = !1;
 		}, n
 	}()
 }).call(this);
+
+
 var htmlMap = {
 	"&": "&amp;",
 	"<": "&lt;",
@@ -4504,6 +4506,8 @@ $(window).load(function() {
 		);
 	});
 
+	$('input.timepicki').timepicki();
+
 	$('table.cart-contents button[name="delete"]').click(function(){
 		var id=$(this).attr('data');
 		post('/cart/remove', {id:id},
@@ -4516,22 +4520,30 @@ $(window).load(function() {
 		);
 	});
 
-	$('#province').change(function(){
+	$('select[data="province"]').change(function(){
 		var v=$(this).val();
-		if (v!=''){
-			post('/ajax/region',{code:v},function(data){
-				if (!data){
-					return ;
-				}
-				var city=$('#city').html('<option value="">请选择</option>');
-				data.forEach(function(item,i){
-					city.append('<option value="'+item.region_code+'">'+item.region_name+'</option>')
-				})
-			});
+		var ref=$(this).attr('ref');
+		if (ref) {
+			if (v != "") {
+				post('/ajax/region', {code: v}, function (data) {
+					if (!data) {
+						return;
+					}
+					console.log($(ref));
+					var city = $(ref).html('<option value="">请选择</option>');
+					data.forEach(function (item, i) {
+						city.append('<option value="' + item.region_code + '">' + item.region_name + '</option>')
+					});
+
+					console.log(city);
+				});
+			} else {
+				$(ref).html('<option value="">请选择</option>');
+			}
 		}
 	});
 
-	$('#city').change(function(){
+	$('select[data="city"]').change(function(){
 		var v=$(this).val();
 		if (v!=''){
 			post('/ajax/region',{code:v},function(data){
@@ -4544,6 +4556,33 @@ $(window).load(function() {
 				})
 			});
 		}
+	});
+
+
+
+	$('select[data="partner"]').change(function(){
+		var v=$(this).val();
+		var ref=$(this).attr('ref');
+		if (ref) {
+			if (v!=''){
+				post('/ajax/partner',{code:v},function(data){
+					if (!data){
+						return ;
+					}
+					if (data.length<1){
+						var city=$(ref).html('<option value="">本区域还没有开通，尽请期待，您可以选择送货上门服务,谢谢！</option>');;
+					}
+					var city=$('#town').html('');
+					data.forEach(function(item,i){
+						city.append('<option value="'+item.id+'">'+item.address+'</option>')
+					})
+				});
+			}
+			else{
+				$(ref).html('<option value="">请选择</option>');
+			}
+		}
+
 	});
 
 	var post=function(url,data,success,error){

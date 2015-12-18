@@ -22,5 +22,16 @@ class RegionHelper
             ->orWhere('region_code','=',31)
             ->get();
     }
+
+
+    public static function getPartner($city_code)
+    {
+        return  DB::table('users')
+            ->select('id', 'address')
+            ->where('city', '=', $city_code)
+            ->where('type','=',1)
+            ->get();
+    }
+
 }
 
