@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Support\Facades\Input;
 use App\Helpers\RegionHelper;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Validation;
 
 class SaleController extends Controller
 {
@@ -46,6 +47,7 @@ class SaleController extends Controller
             "todayText"=>'今天'
         );
 
+        $times=array('9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00');
 
         if (Auth::user()) {
             $view = 'sale.checkout';
@@ -58,7 +60,8 @@ class SaleController extends Controller
             'cart' => $cart,
             'province' => $province,
             'date_picker_options' => json_encode($date_picker_options),
-            'require_send_day'=>date("Y-m-d",strtotime("+1 day"))
+            'require_send_day'=>date("Y-m-d",strtotime("+1 day")),
+            'times'=>$times
         ));
     }
 

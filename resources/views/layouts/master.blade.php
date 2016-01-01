@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +24,7 @@
         <!-- Preloader
         ============================================ -->
         <div class="page-preloader">
-            <div class="vcenter"> <div class="vcenter-this"><img class="anim" src="images/loader.gif" alt="loading..." /></div></div>
+            <div class="vcenter"> <div class="vcenter-this"><img class="anim" src="/images/loader.gif" alt="loading..." /></div></div>
         </div>
         <!-- /Preloader
         ============================================ -->
@@ -32,7 +32,7 @@
         1.page-wrapper shadow boxed-wrapper  ===wide
         2.boxed-wrapper                      ===box
         ++++++++++++++++++++++++++++++++++++++++++++ -->
-        <div class="page-wrapper shadow">
+        <div class="page-wrapper boxed-wrapper shadow">
             @yield('content')
         </div>
         <!-- /Page Wrapper
@@ -40,7 +40,7 @@
         <!-- Javascript
         ================================================== -->
         <script src="/uikit/js/jquery-latest.min.js"></script>
-        <script src="/assets/js/timepicki.js"></script>
+        <script src="/assets/js/jquery.validate.min.js"></script>
         <script src="/uikit/js/uikit.js"></script>
 
         <!-- /JavaScript

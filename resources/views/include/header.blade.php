@@ -12,7 +12,7 @@
         <div class="vcenter">
           <!-- v-centered -->
           <div class="vcenter-this">
-            <a href="index.html">
+            <a href="/">
               <img src="/images/logo1.png" alt="BELOVED">
             </a>
           </div>
@@ -184,8 +184,9 @@
         <div class="btn-wrapper dropdown">
           <a aria-expanded="false" class="btn btn-outline" data-toggle="dropdown">
             @if ($count=count($cart)>0)
-            <b class="count count-round">{{$count}}</b><i class="glyphicon glyphicon-shopping-cart"></i>
-              @endif
+              <b class="count count-round">{{$count}}</b>
+            @endif
+            <i class="ti ti-bag"></i>
           </a>
           <!-- Dropdown Panel -->
           <div class="dropdown-menu dropdown-panel dropdown-right" data-keep-open="true">

@@ -4499,23 +4499,19 @@ $(window).load(function() {
 	$('table.cart-contents input[name="qty"]').change(function(){
 		var qty=$(this).val();
 		var id=$(this).attr('data');
-		post('/cart/update', {qty:qty,id:id},
-			function(data){
+		if(qty==0){
+			return false;
+		}
+		post('/cart/update', {qty:qty,id:id}, function(data){
 				document.location.reload()
 			}
 		);
 	});
 
-	$('input.timepicki').timepicki();
-
 	$('table.cart-contents button[name="delete"]').click(function(){
 		var id=$(this).attr('data');
-		post('/cart/remove', {id:id},
-			function(data){
-				console.log(data);
-				document.location.reload()
-			},function(xhr,status){
-
+		post('/cart/remove', {id:id}, function(data){
+				document.location.reload();
 			}
 		);
 	});
@@ -4585,8 +4581,40 @@ $(window).load(function() {
 
 	});
 
+	$("#checkoutForm").validate({
+		rules: {
+			receiver_name: "required",
+			receiver_province: "required",
+			receiver_city:"required",
+			receiver_address: {
+				required: true,
+				minlength: 6
+			},
+			email: {
+				required: true,
+				email: true
+			},
+			topic: {
+				required: "#newsletter:checked",
+				minlength: 2
+			},
+			agree: "required"
+		},
+		messages: {
+			receiver_name: "Please enter your firstname",
+			receiver_province: "Please enter your firstname",
+			receiver_city: "Please enter your lastname",
+			receiver_address: {
+				required: "Please enter a username",
+				minlength: "Your username must consist of at least 2 characters"
+			},
+			email: "Please enter a valid email address",
+			agree: "Please accept our policy"
+		}
+	});
+
+
 	var post=function(url,data,success,error){
-		console.log(data);
 		$.ajax({
 			type: 'POST',
 			url: url,
@@ -4595,8 +4623,17 @@ $(window).load(function() {
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
 			},
-			success: success,
+			success:sucess,
 			error: error
 		});
 	};
+
+
+	$.validator.setDefaults({
+		submitHandler: function() {
+			alert("submitted!");
+		}
+	});
+
+
 });

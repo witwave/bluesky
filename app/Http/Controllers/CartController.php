@@ -44,9 +44,10 @@ class CartController extends Controller
     {
         $id = Input::get('id');
         if (Cart::get($id)){
-            return Cart::remove($id);
+            Cart::remove($id);
+            return 1;
         }else{
-            return null;
+            return 0;
         }
 
     }

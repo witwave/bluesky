@@ -60,8 +60,7 @@
                                         <div class="clearfix">
                                             <button class="edit hide"><i class="fa fa-pencil"></i></button>
                                             <button class="refresh hide"><i class="fa fa-refresh"></i></button>
-                                            <button class="delete" name="delete" data="{{ $row->rowid }}"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <button class="delete" name="delete" data="{{ $row->rowid }}"><i class="fa fa-trash-o"></i></button>
                                         </div>
                                     </div>
                                 </div>

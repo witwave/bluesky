@@ -33,12 +33,8 @@
                   <p>蓓爱花坊（Beloved）品牌，隶属于BD集团，以体验式超现实花品为引，让人体会真实幸福一刻，让蓓爱花坊相随一辈子.</p>
                     <!-- hlinks -->
                     <ul class="hlinks hlinks-icons color-icons-borders color-icons-bg color-icons-hovered">
-                      <li><a href="#"><i class="icon fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="icon fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="icon fa fa-rss"></i></a></li>
-                      <li><a href="#"><i class="icon fa fa-google-plus"></i></a></li>
-                      <li><a href="#"><i class="icon fa fa-instagram"></i></a></li>
-                      <li><a href="#"><i class="icon fa fa-youtube"></i></a></li>
+                      <li><a href="#"><i class="icon fa fa-weibo"></i></a></li>
+                      <li><a href="#"><i class="icon fa fa-wechat"></i></a></li>
                     </ul>
                     <!-- /hlinks -->
                 </div>
@@ -83,7 +79,7 @@
           <!-- Container -->
           <div class="container">
 
-            <span class="copy-text">© 蓓爱花坊 2014 - <?php echo date('Y')?>, All rights reserved | 京ICP备13030627号 </span>
+            <span class="copy-text">© 蓓爱花坊 2014 - <?php echo date('Y')?>, All rights reserved | 沪ICP备15056118号 </span>
             <!-- hlinks -->
             <ul class="hlinks pull-right">
               <li><a href="#">关于我们</a></li>

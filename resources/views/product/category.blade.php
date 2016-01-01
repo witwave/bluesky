@@ -123,7 +123,7 @@
                                                 <!-- /Price Box -->
                                                 <!-- buttons -->
                                                 <div class="btn-group">
-                                                    <a class="btn btn-outline btn-base-hover" href="cart.html">加入到购物车</a>
+                                                    <a class="btn btn-outline btn-base-hover" href="/cart.html?id={{$item->id}}">加入到购物车</a>
                                                     <!-- <a class="btn btn-outline btn-default-hover" href="product.html"><i class="icon fa fa-heart"></i></a>-->
                                                 </div>
                                                 <!-- /buttons -->
