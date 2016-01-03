@@ -34,7 +34,7 @@
             <div class="panel-heading heading-iconed">
               <h4 class="panel-title case-c">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                <i class="icon-left">1</i> 帐号
+                <i class="icon-left">1</i> 收货信息
               </a>
               </h4>
             </div>
@@ -46,40 +46,7 @@
                 <!-- Row -->
                 <div class="row">
                   <!-- Col -->
-                  <div class="col-md-6 mgb-30-xs">
-                    <h6>我是新客户</h6>
-                    <p>请选择一种如下方式购买</p>
-                    <div class="radio"><label><input value="" name="user-opt" type="radio" checked="">注册一个新帐号</label></div>
-                    <div class="radio"><label><input value="" name="user-opt" type="radio">以游客方式购买</label></div>
-                    <p>建议您注册成为我们的会员，以便享受我们的会员服务</p>
-                    <button class="btn btn-default btn-bigger">下一步</button>
-                  </div>
-                  <!-- /Col -->
-                  <!-- Col -->
-                  <div class="col-md-6">
-                    <h6>我是会员，请登录</h6>
-                    <!-- Form -->
-                    <form>
-                      <!-- Form Group -->
-                      <div class="form-group">
-                        <label>邮箱</label>
-                        <input type="email" class="form-control" placeholder="请输入邮箱">
-                      </div>
-                      <!-- /Form Group -->
-                      <!-- Form Group -->
-                      <div class="form-group">
-                        <label>密码</label>
-                        <input type="password" class="form-control" placeholder="请输入密码">
-                      </div>
-                      <!-- /Form Group -->
-                      <!-- Form Group -->
-                      <div class="form-group">
-                        <label class="checkbox-inline"><input type="checkbox" value="">记住我</label>
-                      </div>
-                      <!-- /Form Group -->
-                      <button class="btn btn-default btn-bigger">登录</button>
-                    </form>
-                    <!-- /Form -->
+
                   </div>
                   <!-- /Col -->
                 </div>

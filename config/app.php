@@ -148,6 +148,8 @@ return [
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
 		Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+
+		Latrell\Alipay\AlipayServiceProvider::class,
 	],
 
 	/*

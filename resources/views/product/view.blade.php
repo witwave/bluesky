@@ -10,8 +10,8 @@
 
             <!-- Breadcrumb -->
             <ol class="breadcrumb pull-left">
-                <li><a href="#"><i class="ti ti-home"></i></a></li>
-                <li><a href="#">当季新品</a></li>
+                <li><a href="/"><i class="ti ti-home"></i></a></li>
+                <li><a href="/category.html">新品</a></li>
                 <li class="active">{{$product->name}}</li>
             </ol>
             <!-- /Breadcrumb -->
@@ -120,12 +120,10 @@
                             <div class="form-group">
                                 <label class="control-label text-uppercase" for="input-quantity">数量:</label>
                                 <input type="number" name="quantity" value="1" size="2" id="input-quantity"
-                                       class="form-control" style="width: 80px"/>
+                                       class="form-control" style="width: 80px"  onblur="if(this.value<0) this.value=1" />
                             </div>
                         </div>
-                        <a href="cart.html" class="btn btn-default btn-bigger"><i
-                                    class="icon-left ti ti-shopping-cart"></i>加入购物车</a>
-
+                        <a onclick="var qty=$('#input-quantity').val(); this.href=this.href+'&q='+qty;return true " href="/cart.html?id={{ $product->id }}" class="btn btn-default btn-bigger" ><i class="icon-left ti ti-shopping-cart"></i>加入购物车</a>
 
                     </div>
                     <!-- /Col -->
@@ -163,7 +161,7 @@
                 <hr class="y-200pc">
 
                 <!-- Row -->
-                <div class="row">
+                <div class="row hide" >
 
                     <!-- Main Col -->
                     <div id="main-col" class="col-md-9 mgb-30-xs">

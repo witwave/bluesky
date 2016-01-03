@@ -144,7 +144,7 @@
         <span class="sr-only">Toggle navigation</span>
         <i class="fa fa-navicon"></i>
         </button>
-        <a class="navbar-brand visible-xs" href="#"><img src="images/logo-xs.png" alt="B"></a>
+        <a class="navbar-brand visible-xs" href="#"><img src="/images/logo-xs.png" alt="B"></a>
       </div>
       <!-- /Header-->
  <!-- Collapse -->
@@ -168,6 +168,7 @@
       <!-- Navbar btn-group -->
       <div class="navbar-btn-group btn-group navbar-right no-margin-r-xs">
         <!-- Btn Wrapper -->
+        @if(Auth::check())
         <div class="btn-wrapper dropdown">
           <a class="btn btn-outline" data-toggle="dropdown"><i class="ti-user"></i></a>
           <!-- Dropdown Menu -->
@@ -178,6 +179,7 @@
           </ul>
           <!-- /Dropdown Menu -->
         </div>
+        @endif
         <!-- /Btn Wrapper -->
         <!-- Btn Wrapper -->
         <?php $cart=Cart::content()?>
@@ -198,7 +200,7 @@
                 @foreach($cart as $row)
                 <!-- Item -->
                 <li class="clearfix">
-                  <img src="{{ $row->options->image}}" alt="{{ $row->name }}">
+                  <img src="{{ '/'.$row->options->image}}" alt="{{ $row->name }}">
                   <div class="text">
                     <a class="title" href="/product/{{$row->id}}.html">{{$row->name}}</a>
                     <div class="details">{{$row->qty}} x ￥{{$row->price}}
@@ -218,10 +220,10 @@
             <section>
               <div class="row grid-10">
                 <div class="col-md-6">
-                  <a class="btn btn-base btn-block margin-y-5" href="cart.html">查看</a>
+                  <a class="btn btn-base btn-block margin-y-5" href="/cart.html">查看</a>
                 </div>
                 <div class="col-md-6">
-                  <a class="btn btn-primary btn-block margin-y-5" href="checkout.html">付款</a>
+                  <a class="btn btn-primary btn-block margin-y-5" href="/checkout.html">付款</a>
                 </div>
               </div>
             </section>

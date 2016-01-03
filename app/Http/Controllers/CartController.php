@@ -14,20 +14,22 @@ class CartController extends Controller
 
     public function index()
     {
+        $q=Input::get('q',1);
+
         if ($id = Input::get('id')) {
-            $this->add((int)$id);
+            $this->add((int)$id,(int)$q);
             return Redirect::action('CartController@index');
         } else {
             return view('sale.cart')->with('cart', Cart::content());
         }
     }
 
-    public function add($id)
+    public function add($id,$qty=1)
     {
         $product = Product::findOrFail($id);
         $imagine = new RImage();
 
-        Cart::add($id, $product->name, 1, $product->price,
+        Cart::add($id, $product->name, $qty, $product->price,
             array(
                 'sku' => $product->sku,
                 'credit' => $product->credit,

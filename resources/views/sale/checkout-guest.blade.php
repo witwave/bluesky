@@ -38,20 +38,21 @@
             <div class="row">
                 <form method="POST" action="/checkout" id="checkoutForm">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+
                     <div class="col-md-12">
 
                         <div class="panel panel-default">
                             <div class="panel-heading">填写订单信息</div>
                             <div class="panel-body">
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <strong>收货人信息</strong>
 
                                 <div class="panel panel-default">
@@ -62,8 +63,9 @@
                                                        class="col-sm-2 col-md-2  control-label">收货人</label>
 
                                                 <div class="col-sm-10 col-md-4 ">
-                                                    <input type="text" name="receiver" class="form-control"
-                                                           id="receiver_name" name="receiver_name" placeholder="">
+                                                    <input type="text" class="form-control" id="receiver_name"
+                                                           name="receiver_name" placeholder=""
+                                                           value="{{ old('receiver_name')  }}">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -72,12 +74,14 @@
                                                 <div class="col-sm-10">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <select class="form-control" id="receiver_province"
-                                                                    name="receiver_province" data="province"
-                                                                    ref="#receiver_city">
+                                                            <select class="form-control" id="receiver_province"  name="receiver_province" data="province" ref="#receiver_city">
                                                                 <option value="">请选择</option>
                                                                 @foreach($province as $item)
-                                                                    <option value="{{$item->region_code}}">{{$item->region_name}}</option>
+                                                                    @if(old('receiver_province')== $item->region_code)
+                                                                        <option value="{{$item->region_code}}" selected>{{$item->region_name}}</option>
+                                                                    @else
+                                                                        <option value="{{$item->region_code}}">{{$item->region_name}}</option>
+                                                                    @endif
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -94,7 +98,7 @@
                                                 <label for="address" class="col-sm-2 control-label">详细地址</label>
 
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="receiver_address" class="form-control"
+                                                    <input type="text" name="receiver_address" class="form-control" value="{{ old('receiver_address')  }}"
                                                            id="receiver_address" placeholder="">
                                                 </div>
                                             </div>
@@ -102,7 +106,7 @@
                                                 <label for="mobile" class="col-sm-2 col-md-2 control-label">手机号码</label>
 
                                                 <div class="col-sm-10 col-md-4">
-                                                    <input type="text" name="receiver_mobile" class="form-control"
+                                                    <input type="text" name="receiver_mobile" class="form-control" value="{{ old('receiver_mobile')  }}"
                                                            id="receiver_mobile">
                                                 </div>
 
@@ -111,19 +115,8 @@
                                                 <label for="phone" class="col-sm-2 col-md-2 control-label">电话</label>
 
                                                 <div class="col-sm-10 col-md-4">
-                                                    <input type="text" name="receiver_phone" class="form-control"
+                                                    <input type="text" name="receiver_phone" class="form-control" value="{{ old('receiver_phone')  }}"
                                                            id="receiver_phone">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="button" class="btn btn-danger">保存收货人信息</button>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="phone" class="col-sm-2 col-md-2 control-label">收货地址</label>
-                                                <div class="col-sm-10 col-md-10">
-                                                   <p style="padding-top: 8px">曾丹丹，86-13482839254，上海 上海市 浦东新区 康桥镇 康杉路151弄 康馨花园 22-502 ，000000</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,21 +126,33 @@
 
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <div class="form-inline">
+                                        <div class="form-horizontal">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="booker_name"
-                                                       name="booker_name" placeholder="您的姓名"
-                                                       style="margin-right:5px">
+                                                <label for="booker_name" class="col-sm-2 control-label">姓名</label>
+
+                                                <div class="col-sm-10 col-md-4">
+                                                    <input type="text" class="form-control" id="booker_name"
+                                                           name="booker_name" placeholder="您的姓名"  value="{{ old('booker_name')  }}"
+                                                            >
+                                                </div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="您的联系电话"
-                                                       id="booker_phone" name="booker_phone"
-                                                       style="margin-right:5px">
+                                                <label for="booker_phone" class="col-sm-2 control-label">联系电话</label>
+
+                                                <div class="col-sm-10 col-md-4">
+                                                    <input type="text" class="form-control" placeholder="您的联系电话"
+                                                           id="booker_phone" name="booker_phone"  value="{{ old('booker_phone')  }}"
+                                                            >
+                                                </div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="您的电子邮箱"
-                                                       id="booker_email" name="booker_email"
-                                                       style="margin-right:5px">
+                                                <label for="booker_email" class="col-sm-2 control-label">电子邮箱</label>
+
+                                                <div class="col-sm-10 col-md-4">
+                                                    <input type="email" class="form-control" placeholder="您的电子邮箱"
+                                                           id="booker_email" name="booker_email" value="{{ old('booker_email')  }}"
+                                                            >
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -161,8 +166,9 @@
                                                 <div class="form-group col-sm-2">
                                                     <label>配送日期</label>
                                                     <input type="text" name="require_send_day"
-                                                           value="{{ $require_send_day }}" class="form-control input-sm"
+                                                           value="{{ $require_send_day?$require_send_day:old('require_send_day') }}" class="form-control input-sm"
                                                            data-call="jui-datepicker" placeholder=""
+
                                                            data-options="{{ $date_picker_options }}">
                                                 </div>
                                                 <div class="form-group col-sm-10">
@@ -171,43 +177,43 @@
                                                     <div>
                                                         <label class="radio-inline">
                                                             <input type="radio" name="require_send_type"
-                                                                   id="require_send_type" value="不限" checked> 不限
+                                                                   id="require_send_type1" value="不限"   checked> 不限
                                                         </label>
                                                         <label class="radio-inline">
                                                             <input type="radio" name="require_send_type"
-                                                                   id="require_send_type" value="上午"> 上午
+                                                                   id="require_send_type2" value="上午"> 上午
                                                         </label>
                                                         <label class="radio-inline">
                                                             <input type="radio" name="require_send_type"
-                                                                   id="require_send_type" value="下午"> 下午
+                                                                   id="require_send_type3" value="下午"> 下午
                                                         </label>
                                                         <label class="radio-inline">
                                                             <input type="radio" name="require_send_type"
-                                                                   id="require_send_type" value="晚上"> 晚上
+                                                                   id="require_send_type4" value="晚上"> 晚上
                                                         </label>
                                                         <label class="radio-inline">
                                                             <input type="radio" name="require_send_type"
-                                                                   id="require_send_type" value="定时"> 定时
+                                                                   id="require_send_type5" value="定时"> 定时
                                                         </label>
                                                         <label class="radio-inline">
-                                                        <select  name="require_send_time"
-                                                                 id="require_send_time" class="form-control">
-                                                            <option>请选择</option>
-                                                            @foreach($times as $item)
-                                                                <option value="{{$item}}">{{$item}}</option>
-                                                            @endforeach
-                                                        </select>
+                                                            <select name="require_send_time"
+                                                                    id="require_send_time" class="form-control">
+                                                                <option value="">请选择</option>
+                                                                @foreach($times as $item)
+                                                                    <option value="{{$item}}">{{$item}}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-sm-12">
                                                     <label>贺卡内容</label>
                                                     <textarea class="form-control" rows="3" name="card"
-                                                              placeholder="如需署名,请写在留言后面"></textarea>
+                                                              placeholder="如需署名,请写在留言后面">{{ old('card') }}</textarea>
                                                 </div>
                                                 <div class="form-group col-sm-12">
                                                     <label>留言</label>
-                                                    <input class="form-control" name="special_content"
+                                                    <input class="form-control" name="special_content" value="{{ old('special_content') }}"
                                                            placeholder="如有特殊要求请注明,我们尽量满足，120字以内:)"/>
                                                 </div>
                                             </div>
@@ -220,16 +226,16 @@
                                     <div class="panel-body">
                                         <form class="form-horizontal">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="col-sm-2 control-label">配送方式</label>
+                                                <label for="self_get" class="col-sm-2 control-label">配送方式</label>
 
                                                 <div class="col-sm-10">
                                                     <div class="radio">
                                                         <label class="radio-line">
-                                                            <input value="" name="self_get" type="radio" checked="true"
-                                                                   value="false">送货上门
+                                                            <input name="self_get" type="radio"  {{ old('self_get',0)==0?'checked':'' }}
+                                                                   value="0">送货上门
                                                         </label>
                                                         <label class="radio-line">
-                                                            <input value="" name="self_get" type="radio" value="true">上门自取
+                                                            <input name="self_get" type="radio" value="1" {{ old('self_get',0)==1?'checked':'' }}>上门自取
                                                         </label>
                                                     </div>
                                                 </div>
@@ -273,18 +279,20 @@
                                                 <div class="col-sm-10">
                                                     <div class="radio">
                                                         <label>
-                                                            <input value="支付宝" name="pay_type" type="radio" checked>支付宝
+                                                            <input name="pay_type" type="radio" value="1" {{ old('pay_type',1)==1?'checked':'' }}>支付宝
                                                         </label>
                                                     </div>
                                                     <div class="radio">
                                                         <label><input value="微信支付" name="pay_type" type="radio"
+                                                                      value="2"
                                                                       disabled>微信支付
-                                                            <small>(紧张开发中)</small>
+                                                            <small>(尽请期待)</small>
                                                         </label>
                                                     </div>
                                                     <div class="radio">
-                                                        <label><input value="网银" name="pay_type" type="radio" disabled>网银
-                                                            <small>(紧张开发中)</small>
+                                                        <label><input value="网银" name="pay_type" type="radio" disabled
+                                                                      value="3">网银
+                                                            <small>(尽请期待)</small>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -309,9 +317,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <?php $total_credit = 0?>
                                             @foreach($cart as $row)
-                                                <?php $total_credit += $row->options->credit * $row->qty?>
                                                 <tr>
                                                     <td class="image hidden-xs">
                                                         <img src="{{ $row->options->image}}" alt="{{ $row->name }}">
@@ -353,9 +359,9 @@
                                             <dt>可获得积分:</dt>
                                             <dd>{{$total_credit}}</dd>
                                             <dt>运费:</dt>
-                                            <dd>{{$ship_fee}}</dd>
+                                            <dd id="shop_fee">{{$ship_fee}}</dd>
                                             <dt>共计:</dt>
-                                            <dd>￥{{$pay_fee}}</dd>
+                                            <dd id="paid_fee">￥{{$pay_fee}}</dd>
                                         </dl>
                                     </div>
                                 </div>

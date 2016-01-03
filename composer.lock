@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ae8799057d66c124637a38bccda5f9bb",
-    "content-hash": "76f865abd7830b00a14e547dd15d460a",
+    "hash": "079612d54ab7913b00d6e9cb417618b1",
+    "content-hash": "7be4e495177dad3b328d249e8dc30d62",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -751,6 +751,52 @@
             "time": "2015-09-04 12:46:14"
         },
         {
+            "name": "latrell/alipay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Latrell/Alipay.git",
+                "reference": "68edf2bb03bee8ae3654916ff5863ed51df7a180"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/Latrell/Alipay/68edf2bb03bee8ae3654916ff5863ed51df7a180.zip",
+                "reference": "68edf2bb03bee8ae3654916ff5863ed51df7a180",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "5.*",
+                "illuminate/events": "5.*",
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Latrell\\Alipay\\": "src/Latrell/Alipay/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Latrell Chan",
+                    "email": "i@latrell.me"
+                }
+            ],
+            "description": "支付宝SDK在Laravel5封装包。",
+            "keywords": [
+                "Alipay SDK",
+                "alipay",
+                "l5",
+                "laravel",
+                "laravel 5"
+            ],
+            "time": "2015-08-19 06:56:00"
+        },
+        {
             "name": "league/flysystem",
             "version": "1.0.12",
             "source": {
@@ -833,16 +879,16 @@
         },
         {
             "name": "lokielse/omnipay-alipay",
-            "version": "v1.4.6",
+            "version": "v1.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lokielse/omnipay-alipay.git",
-                "reference": "f34ed8783943e01e8ed78abdbbaae487181ce3ba"
+                "reference": "87622e8549b50773a8db83c93c3ad9a22e618991"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/lokielse/omnipay-alipay/f34ed8783943e01e8ed78abdbbaae487181ce3ba.zip",
-                "reference": "f34ed8783943e01e8ed78abdbbaae487181ce3ba",
+                "url": "http://packagist.phpcomposer.com/files/lokielse/omnipay-alipay/87622e8549b50773a8db83c93c3ad9a22e618991.zip",
+                "reference": "87622e8549b50773a8db83c93c3ad9a22e618991",
                 "shasum": ""
             },
             "require": {
@@ -878,7 +924,7 @@
                 "payment",
                 "purchase"
             ],
-            "time": "2015-08-18 17:43:49"
+            "time": "2015-09-15 16:43:43"
         },
         {
             "name": "monolog/monolog",
@@ -3949,7 +3995,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "latrell/alipay": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

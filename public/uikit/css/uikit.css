@@ -7096,3 +7096,7 @@ div.pp_default .pp_details, div.light_rounded .pp_details, div.dark_rounded .pp_
 .skin-6-bg {
   background: #82B440;
 }
+
+label.error{
+  color:red;
+}

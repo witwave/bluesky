@@ -58,6 +58,10 @@ Route::get('/product2/{id}', function () {
 	return view('product.view-full');
 });
 
+//支付
+Route::any('/alipay/return', 'SaleController@webReturn');
+Route::any('/alipay/webNotify', 'SaleController@webNotify');
+
 Route::group(['middleware' => 'auth', 'namespace' => 'User'], function () {
 	Route::get('user/profile', 'UserController@profile');
 	Route::get('user/order', 'UserController@order');
