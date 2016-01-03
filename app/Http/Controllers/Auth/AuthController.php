@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\Facades\Input;
 use Validator;
 
 class AuthController extends Controller {
@@ -35,6 +36,13 @@ class AuthController extends Controller {
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
 
+
+    public function getLogin()
+    {
+        $return=Input::get('return', $this->redirectPath);
+        return view('auth.login')->with('return',$return);
+    }
+
 	/**
 	 * Get a validator for an incoming registration request.
 	 *
@@ -49,7 +57,14 @@ class AuthController extends Controller {
 		]);
 	}
 
-	/**
+    public function redirectPath()
+    {
+        $return=Input::get('return', $this->redirectPath);
+       return Input::get('return', $return);
+    }
+
+
+    /**
 	 * Create a new user instance after a valid registration.
 	 *
 	 * @param  array  $data

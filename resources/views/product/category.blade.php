@@ -10,8 +10,8 @@
         <div class="container">
             <!-- Section Title -->
             <div class="section-title invert-colors no-margin-b">
-                <h2>当季新品</h2>
-                <p class="hidden-xs">Helena is a freelance fashion house specialiasing in print designs and combining fabrics. Our stores can be found all over the world.</p>
+                <h2>蓓爱</h2>
+                <p class="hidden-xs">如果爱，请深爱</p>
             </div>
             <!-- /Section Title -->
         </div>
@@ -25,8 +25,8 @@
 
             <!-- Breadcrumb -->
             <ol class="breadcrumb pull-left">
-                <li><a href="#"><i class="ti ti-home"></i></a></li>
-                <li class="active">当李新品</li>
+                <li><a href="/"><i class="ti ti-home"></i></a></li>
+                <li class="active">{{ $name }}</li>
             </ol>
             <!-- /Breadcrumb -->
         </div>

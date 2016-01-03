@@ -43,6 +43,7 @@
               @endif
               <form method="POST" action="/auth/login">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="return" value="{{ $return }}">
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-user"></i></div>

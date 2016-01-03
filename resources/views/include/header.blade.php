@@ -149,15 +149,15 @@
       <!-- /Header-->
  <!-- Collapse -->
             <div id="nav-collapse2" class="collapse navbar-collapse navbar-absolute">
-
+            <?php $path=strtolower(Request::path()) ?>
               <!-- Navbar Center -->
               <ul class="nav navbar-nav navbar-center line-top case-c">
-                <li class="active" ><a href="/">首页</a></li>
-                <li><a href="/category.html">当季新品</a></li>
-                <li><a href="/category.html">蓓爱之选</a></li>
-                <li><a href="/category.html">花礼</a></li>
-                <li><a href="/category.html">爱品</a></li>
-                <li><a href="/category.html">动态</a></li>
+                <li class="{{ $path=='/'?'active':'' }}"  ><a href="/">首页</a></li>
+                <li class="{{ $path=='category.html'?'active':'' }}"><a href="/category.html">新品</a></li>
+                <li class="{{ $path=='category-2.html'?'active':'' }}"><a href="/category-2.html">蓓爱</a></li>
+                <li class="{{ $path=='category-4.html'?'active':'' }}"><a href="/category-4.html">花礼</a></li>
+                <li class="{{ $path=='category-15.html'?'active':'' }}"><a href="/category-15.html">爱品</a></li>
+                {{--<li class="{{ $path=='news.html'?'active':'' }}"><a href="/news.html">动态</a></li>--}}
               </ul>
               <!-- /Navbar Center -->
 
