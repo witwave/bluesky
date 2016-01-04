@@ -4827,6 +4827,58 @@ $(window).load(function() {
 		}
 	});
 
+	$("#fmAddress").validate({
+		rules: {
+			receiver_name: "required",
+			receiver_province: "required",
+			receiver_city: "required",
+			receiver_address: {
+				required: true,
+				maxlength: 120
+			},
+			receiver_mobile: {
+				required: true,
+				isTel: true
+			},
+			receiver_phone: {
+				isPhone: true
+			}
+		},
+		messages: {
+			receiver_name: "请墳写收件人姓名",
+			receiver_province: "请选择所在省",
+			receiver_city: "请填写所在城市",
+			receiver_address: {
+				required: "请填写收件地址",
+				maxlength: "收件地址过长"
+			},
+			receiver_mobile: {
+				required: '收件人联系电话必填',
+				isTel: '请输入正确的电话'
+			},
+			receiver_phone: {
+				isPhone: '请输入正确的联系电话'
+			},
+		},
+		invalidHandler: function () {
+			return false;
+		},
+		submitHandler: function () {
+			post(
+				'/user/address',
+				$('#fmAddress').serialize(),
+
+				function (data) {
+					alert('保存成功');
+				},
+				function () {
+					alert('保存失败，请重试');
+				}
+			);
+			return false;
+		}
+	});
+
 	$("#checkoutForm").validate({
 		rules: {
 			receiver_name: "required",

@@ -370,10 +370,10 @@
 
                         </div>
                         <div class="cart-buttons clearfix">
-                            <button type="submit" class="btn btn-base checkout"><i
+                            <button type="submit" class="btn btn-primary checkout"><i
                                         class="icon-left fa fa-shopping-cart"></i>提交订单
                             </button>
-                            <a class="btn btn-primary checkout" href="cart.html"><i
+                            <a class="btn btn-base checkout" href="cart.html"><i
                                         class="icon-left fa fa-arrow-left"></i>修改购物车</a>
                         </div>
 
@@ -383,7 +383,4 @@
 
         </div>
     </section>
-    <script type="javascript">
-
-    </script>
 @endsection

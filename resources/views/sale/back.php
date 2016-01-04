@@ -1,7 +1,4 @@
 @extends('layouts.main')
-@section('title')
-订单结算页
-@endsection
 @section('content')
 <section class="page-info-block boxed-section">
     <!-- Container -->
@@ -9,403 +6,241 @@
         <!-- Breadcrumb -->
         <ol class="breadcrumb pull-left">
             <li><a href="/"><i class="ti ti-home"></i></a></li>
-            <li class="active">填写订单信息</li>
+            <li class="active">提交订单</li>
         </ol>
         <!-- /Breadcrumb -->
+        <!-- hlinks -->
+        <ul class="page-links pull-right hlinks hlinks-icons color-icons-borders color-icons-bg-hovered">
+            <li><a href="#"><i class="icon fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="icon fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="icon fa fa-rss"></i></a></li>
+        </ul>
+        <!-- /hlinks -->
     </div>
     <!-- /Container -->
-</section>
-<section class="content-block default-bg">
-    <div class="container cont-pad-y-sm">
-        <div class="row">
-            <div class="col-md-6">
-                <button class="btn btn-danger btn-lg btn-block"> 无需注册，轻松下单</button>
-            </div>
-            <div class="col-md-6">
-                <div class="text-center"
-                     style="background-color: #CCCCCC;line-height: 24px;padding-top: 6px;padding-bottom: 6px">
-                    已是会员？ <a class="btn btn-danger " href="/auth/login?return={{ Request::getRequestUri()}}">
-                        立即登录 </a>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 <section class="content-block default-bg">
     <!-- Container -->
     <div class="container cont-pad-y-sm">
         <!-- Row -->
         <div class="row">
-            <form method="POST" action="/checkout" id="checkoutForm">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                <div class="col-md-12">
-
+            <!-- Main Col -->
+            <div class="main-col col-md-9 mgb-30-xs">
+                <!-- Checkout Accordion -->
+                <div class="panel-group checkout" id="accordion">
+                    <!-- Panel -->
                     <div class="panel panel-default">
-                        <div class="panel-heading">填写订单信息</div>
-                        <div class="panel-body">
-                            @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-                            <strong>收货人信息</strong>
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="form-horizontal" name="fmAddress">
-                                        <div class="form-group">
-                                            <label for="inputReceiver"
-                                                   class="col-sm-2 col-md-2  control-label">收货人</label>
-
-                                            <div class="col-sm-10 col-md-4 ">
-                                                <input type="text" class="form-control" id="receiver_name"
-                                                       name="receiver_name" placeholder=""
-                                                       value="{{ old('receiver_name')  }}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="col-sm-2 control-label">所在地区</label>
-
-                                            <div class="col-sm-10">
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <select class="form-control" id="receiver_province"  name="receiver_province" data="province" ref="#receiver_city">
-                                                            <option value="">请选择</option>
-                                                            @foreach($province as $item)
-                                                            @if(old('receiver_province')== $item->region_code)
-                                                            <option value="{{$item->region_code}}" selected>{{$item->region_name}}</option>
-                                                            @else
-                                                            <option value="{{$item->region_code}}">{{$item->region_name}}</option>
-                                                            @endif
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <select class="form-control" id="receiver_city"
-                                                                name="receiver_city">
-                                                            <option value="">请选择</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="address" class="col-sm-2 control-label">详细地址</label>
-
-                                            <div class="col-sm-10">
-                                                <input type="text" name="receiver_address" class="form-control" value="{{ old('receiver_address')  }}"
-                                                       id="receiver_address" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="mobile" class="col-sm-2 col-md-2 control-label">手机号码</label>
-
-                                            <div class="col-sm-10 col-md-4">
-                                                <input type="text" name="receiver_mobile" class="form-control" value="{{ old('receiver_mobile')  }}"
-                                                       id="receiver_mobile">
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="phone" class="col-sm-2 col-md-2 control-label">电话</label>
-
-                                            <div class="col-sm-10 col-md-4">
-                                                <input type="text" name="receiver_phone" class="form-control" value="{{ old('receiver_phone')  }}"
-                                                       id="receiver_phone">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="button" class="btn btn-danger">保存收货人信息</button>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="phone" class="col-sm-2 col-md-2 control-label">收货地址</label>
-
-                                            <div class="col-sm-10 col-md-10">
-                                                <p style="padding-top: 8px">曾丹丹，86-13482839254，上海 上海市 浦东新区 康桥镇
-                                                    康杉路151弄 康馨花园 22-502 ，000000</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <strong>订购人信息</strong>
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
-                                            <label for="booker_name" class="col-sm-2 control-label">姓名</label>
-
-                                            <div class="col-sm-10 col-md-4">
-                                                <input type="text" class="form-control" id="booker_name"
-                                                       name="booker_name" placeholder="您的姓名"  value="{{ old('booker_name')  }}"
-                                                    >
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="booker_phone" class="col-sm-2 control-label">联系电话</label>
-
-                                            <div class="col-sm-10 col-md-4">
-                                                <input type="text" class="form-control" placeholder="您的联系电话"
-                                                       id="booker_phone" name="booker_phone"  value="{{ old('booker_phone')  }}"
-                                                    >
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="booker_email" class="col-sm-2 control-label">电子邮箱</label>
-
-                                            <div class="col-sm-10 col-md-4">
-                                                <input type="email" class="form-control" placeholder="您的电子邮箱"
-                                                       id="booker_email" name="booker_email" value="{{ old('booker_email')  }}"
-                                                    >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <strong>配送信息</strong>
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div>
-                                            <div class="form-group col-sm-2">
-                                                <label>配送日期</label>
-                                                <input type="text" name="require_send_day"
-                                                       value="{{ $require_send_day?$require_send_day:old('require_send_day') }}" class="form-control input-sm"
-                                                       data-call="jui-datepicker" placeholder=""
-
-                                                       data-options="{{ $date_picker_options }}">
-                                            </div>
-                                            <div class="form-group col-sm-10">
-                                                <label>配送时段</label>
-
-                                                <div>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="require_send_type"
-                                                               id="require_send_type1" value="不限"   checked> 不限
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="require_send_type"
-                                                               id="require_send_type2" value="上午"> 上午
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="require_send_type"
-                                                               id="require_send_type3" value="下午"> 下午
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="require_send_type"
-                                                               id="require_send_type4" value="晚上"> 晚上
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="require_send_type"
-                                                               id="require_send_type5" value="定时"> 定时
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <select name="require_send_time"
-                                                                id="require_send_time" class="form-control">
-                                                            <option value="">请选择</option>
-                                                            @foreach($times as $item)
-                                                            <option value="{{$item}}">{{$item}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm-12">
-                                                <label>贺卡内容</label>
-                                                    <textarea class="form-control" rows="3" name="card"
-                                                              placeholder="如需署名,请写在留言后面">{{ old('card') }}</textarea>
-                                            </div>
-                                            <div class="form-group col-sm-12">
-                                                <label>留言</label>
-                                                <input class="form-control" name="special_content" value="{{ old('special_content') }}"
-                                                       placeholder="如有特殊要求请注明,我们尽量满足，120字以内:)"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <strong>支付及配送 </strong>
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label for="self_get" class="col-sm-2 control-label">配送方式</label>
-
-                                            <div class="col-sm-10">
-                                                <div class="radio">
-                                                    <label class="radio-line">
-                                                        <input name="self_get" type="radio"  {{ old('self_get',0)==0?'checked':'' }}
-                                                        value="0">送货上门
-                                                    </label>
-                                                    <label class="radio-line">
-                                                        <input name="self_get" type="radio" value="1" {{ old('self_get',0)==1?'checked':'' }}>上门自取
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-2 control-label"></label>
-
-                                            <div class="col-sm-10">
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <select class="form-control" id="store_province"
-                                                                name="store_province" ref="#store_city"
-                                                                data="province">
-                                                            <option value="">请选择</option>
-                                                            @foreach($province as $item)
-                                                            <option value="{{$item->region_code}}">{{$item->region_name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <select class="form-control" id="store_city" data="partner"
-                                                                ref="#partner_id">
-                                                            <option value="">请选择</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <br/>
-                                                        <select class="form-control" id="partner_id"
-                                                                name="partner_id">
-                                                            <option value="">请选择门店</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-2 control-label">支付方式</label>
-
-                                            <div class="col-sm-10">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input name="pay_type" type="radio" value="1" {{ old('pay_type',1)==1?'checked':'' }}>支付宝
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label><input value="微信支付" name="pay_type" type="radio"
-                                                                  value="2"
-                                                                  disabled>微信支付
-                                                        <small>(尽请期待)</small>
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label><input value="网银" name="pay_type" type="radio" disabled
-                                                                  value="3">网银
-                                                        <small>(尽请期待)</small>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-
-
-                                </div>
-                            </div>
-                            <strong>商品清单 </strong>
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <table class="cart-contents table" id="cart">
-                                        <thead>
-                                        <tr>
-                                            <th class="hidden-xs">图片</th>
-                                            <th>描述</th>
-                                            <th>数量</th>
-                                            <th class="hidden-xs">单价</th>
-                                            <th>总价</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($cart as $row)
-                                        <tr>
-                                            <td class="image hidden-xs">
-                                                <img src="{{ $row->options->image}}" alt="{{ $row->name }}">
-                                                {{$row->options->has('size') ? $row->options->size : ''}}
-                                            </td>
-                                            <td class="details">
-                                                <div class="clearfix">
-                                                    <div class="pull-left no-float-xs">
-                                                        <a href="/product/{{$row->id}}.html"
-                                                           class="title">{{$row->name}}</a>
-
-                                                        <span>商品编码: {{$row->options->sku}}</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="qty">
-                                                {{ $row->qty }}
-                                            </td>
-                                            <td class="unit-price hidden-xs"><span
-                                                    class="currency">￥</span> {{$row->price}}
-                                            </td>
-                                            <td class="total-price"><span
-                                                    class="currency">￥</span>{{$row->subtotal}}</td>
-                                        </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                    <style>
-                                        dl.dl-horizontal > dt {
-                                            margin: 0 0 10px 0;
-                                            padding: 0;
-                                            line-height: 14px;
-                                        }
-                                    </style>
-                                    <br/>
-                                    <dl class="dl-horizontal pull-right">
-                                        <dt>商品总价:</dt>
-                                        <dd>￥{{Cart::total()}}</dd>
-                                        <dt>可获得积分:</dt>
-                                        <dd>{{$total_credit}}</dd>
-                                        <dt>运费:</dt>
-                                        <dd id="shop_fee">{{$ship_fee}}</dd>
-                                        <dt>共计:</dt>
-                                        <dd id="paid_fee">￥{{$pay_fee}}</dd>
-                                    </dl>
-                                </div>
-                            </div>
-
-
+                        <!-- Heading -->
+                        <div class="panel-heading heading-iconed">
+                            <h4 class="panel-title case-c">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    <i class="icon-left">1</i> 收货信息
+                                </a>
+                            </h4>
                         </div>
+                        <!-- /Heading -->
+                        <!-- Collapse -->
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <!-- Panel Body -->
+                            <div class="panel-body">
+                                <!-- Row -->
+                                <div class="row">
+                                    <!-- Col -->
 
-
+                                </div>
+                                <!-- /Col -->
+                            </div>
+                            <!-- /Row -->
+                        </div>
+                        <!-- /Panel Body -->
                     </div>
-                    <div class="cart-buttons clearfix">
-                        <button type="submit" class="btn btn-base checkout"><i
-                                class="icon-left fa fa-shopping-cart"></i>提交订单
-                        </button>
-                        <a class="btn btn-primary checkout" href="cart.html"><i
-                                class="icon-left fa fa-arrow-left"></i>修改购物车</a>
-                    </div>
-
+                    <!-- /Collapse -->
                 </div>
-            </form>
+                <!-- /Panel -->
+                <!-- Panel -->
+                <div class="panel panel-default">
+                    <!-- Heading -->
+                    <div class="panel-heading heading-iconed">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                <i class="icon-left">2</i> 配送方式
+                            </a>
+                        </h4>
+                    </div>
+                    <!-- /Heading -->
+                    <!-- Collapse -->
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <!-- Panel Body -->
+                        <div class="panel-body">
+                            <p></p>
+                            <div class="radio"><label><input value="" name="shipping-opt" type="radio" >上门自取</label></div>
+                            <div class="radio"><label><input value="" name="shipping-opt" type="radio" checked="true" >送货上门</label></div>
+                            <!-- Form -->
+                            <form>
+                                <!-- Row -->
+                                <div class="row">
+                                    <!-- Col -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>收货人</label>
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                    <!-- /Col -->
+                                    <!-- Col -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>收货人电话</label>
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                    <!-- /Col -->
+                                    <!-- Col -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label></label>
+                                            <select class="form-control">
+                                                <option>请选择</option>
+                                                <option>上海</option>
+                                                <option>江苏</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /Col -->
+                                    <!-- Col -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label></label>
+                                            <select class="form-control">
+                                                <option>请选择</option>
+                                                <option>浦东新区</option>
+                                                <option>静安</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /Col -->
+                                    <!-- Col -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label></label>
+                                            <select class="form-control">
+                                                <option>请选择</option>
+                                                <option>城区</option>
+                                                <option>北蔡镇</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /Col -->
+                                    <div class="col-md-12">
+                                        <!-- Form Group -->
+                                        <div class="form-group">
+                                            <label>收货人地址</label>
+                                            <input type="text" class="form-control" placeholder="Enter Name">
+                                        </div>
+                                    </div>
+                                    <!-- /Form Group -->
+
+                                    <!-- Col -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>邮编</label>
+                                            <input type="text" class="form-control" placeholder="Enter Name">
+                                        </div>
+                                    </div>
+                                    <!-- /Col -->
+                                </div>
+                                <!-- /Row -->
+                            </form>
+                            <!-- Form -->
+                        </div>
+                        <!-- /Panel Body -->
+                    </div>
+                    <!-- /Collapse -->
+                </div>
+                <!-- /Panel -->
+                <!-- Panel -->
+                <div class="panel panel-default hide">
+                    <!-- Heading -->
+                    <div class="panel-heading heading-iconed">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <i class="icon-left">3</i> Shippping Information
+                            </a>
+                        </h4>
+                    </div>
+                    <!-- /Heading -->
+                    <!-- Collapse -->
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <!-- Panel Body -->
+                        <div class="panel-body">
+                            <p>Please select a shipping method.</p>
+                            <div class="radio"><label><input value="" name="acnt-opt" type="radio" checked="">Cash on delivery</label></div>
+                            <div class="radio"><label><input value="" name="acnt-opt" type="radio">Send by courier</label></div>
+                        </div>
+                        <!-- /Panel Body -->
+                    </div>
+                    <!-- /Collapse -->
+                </div>
+                <!-- /Panel -->
+                <!-- Panel -->
+                <div class="panel panel-default">
+                    <!-- Heading -->
+                    <div class="panel-heading heading-iconed">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                <i class="icon-left">3</i> 支付方式
+                            </a>
+                        </h4>
+                    </div>
+                    <!-- /Heading -->
+                    <!-- Collapse -->
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <!-- Panel Body -->
+                        <div class="panel-body">
+                            <div class="radio"><label><input value="" name="pay-opt" type="radio" checked="">支付宝</label></div>
+                            <div class="radio"><label><input value="" name="pay-opt" type="radio">微信支付</label></div>
+                            <div class="radio"><label><input value="" name="pay-opt" type="radio" >网银</label></div>
+                            <hr>
+                            <button class="btn btn-primary btn-sm btn-bigger">提交订单</button>
+                        </div>
+                        <!-- /Panel Body -->
+                    </div>
+                    <!-- /Collapse -->
+                </div>
+                <!-- /Panel -->
+            </div>
+            <!-- /Accordion -->
         </div>
-
+        <!-- /Main Col -->
+        <!-- Side Col -->
+        <div class="side-col col-md-3">
+            <!-- Side Widget -->
+            <div class="order-summary">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>商品</td>
+                        <td class="price">￥{{Cart::total()}}</td>
+                    </tr>
+                    <tr>
+                        <td>运费</td>
+                        <td class="price"><span class="success">￥50.00</span></td>
+                    </tr>
+                    <tr class="total">
+                        <td> 总计 </td>
+                        <td class="price">￥{{Cart::total()}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a class="btn btn-default btn-block btn-bigger" href="/">继续购买</a>
+                <button class="btn btn-primary btn-block btn-bigger">提交订单</button>
+            </div>
+            <!-- /Side Widget -->
+        </div>
+        <!-- /Side Col -->
     </div>
+    <!-- /Row -->
+    </div>
+    <!-- /Container -->
 </section>
-<script type="javascript">
-
-</script>
 @endsection
-<?php
-/**
- * Created by PhpStorm.
- * User: witwave
- * Date: 16-1-3
- * Time: 下午10:00
- */

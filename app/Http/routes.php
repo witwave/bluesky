@@ -69,4 +69,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'User'], function () {
 	Route::get('user/address', 'UserController@address');
 	Route::get('user/day', 'UserController@day');
 	Route::get('user/password', 'UserController@password');
+
+	Route::post('user/address', 'UserController@storeAddress');
 });
