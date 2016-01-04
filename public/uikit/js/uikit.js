@@ -4810,6 +4810,23 @@ $(window).load(function() {
 
 	});
 
+
+	$('input[name=self_get]').change(function(){
+		var ship_fee=$('#ship_fee').attr('data');
+		var paid_fee=$('#paid_fee').attr('data');
+		var paid_fee2=$('#paid_fee').attr('data2');
+		if ($(this).val()==1){
+			$('#boxshop').show();
+			$('#ship_fee').html('￥0.0');
+			$('#paid_fee').html('￥'+paid_fee2);
+		}else{
+			$('#boxshop').hide();
+
+			$('#ship_fee').html('￥'+ship_fee);
+			$('#paid_fee').html('￥'+paid_fee);
+		}
+	});
+
 	$("#checkoutForm").validate({
 		rules: {
 			receiver_name: "required",
@@ -4847,6 +4864,15 @@ $(window).load(function() {
 			},
 			special_content:{
 				maxlength: 120
+			},
+			store_province: {
+				required: "#self_get:checked"
+			},
+			store_city: {
+				required: "#self_get:checked"
+			},
+			partner_id: {
+				required: "#self_get:checked"
 			}
 		},
 		messages: {
@@ -4885,6 +4911,15 @@ $(window).load(function() {
 			},
 			special_content:{
 				maxlength:'留言内容过长'
+			},
+			store_province: {
+				required: "必选"
+			},
+			store_city: {
+				required: "必选"
+			},
+			partner_id: {
+				required: "必选"
 			}
 		}
 	});

@@ -46,6 +46,7 @@ class SaleController extends Controller
 
         $province = RegionHelper::getProvince();
 
+
         $date_picker_options = array("numberOfMonths" => 1,
             "showButtonPanel" => false,
             "dateFormat" => 'yy-mm-dd',

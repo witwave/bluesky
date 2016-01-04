@@ -231,17 +231,16 @@
                                                 <div class="col-sm-10">
                                                     <div class="radio">
                                                         <label class="radio-line">
-                                                            <input name="self_get" type="radio"  {{ old('self_get',0)==0?'checked':'' }}
-                                                                   value="0">送货上门
+                                                            <input name="self_get" type="radio"  {{ old('self_get',0)==0?'checked':'' }} value="0">送货上门
                                                         </label>
                                                         <label class="radio-line">
-                                                            <input name="self_get" type="radio" value="1" {{ old('self_get',0)==1?'checked':'' }}>上门自取
+                                                            <input name="self_get" type="radio" id="self_get" value="1" {{ old('self_get',0)==1?'checked':'' }}>上门自取
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="col-sm-2 control-label"></label>
+                                            <div class="form-group" id="boxshop"  style=" {{ old('self_get',0)==0?'display:none':'' }}">
+                                                <label for="" class="col-sm-2 control-label"></label>
 
                                                 <div class="col-sm-10">
                                                     <div class="row">
@@ -256,7 +255,7 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-sm-4">
-                                                            <select class="form-control" id="store_city" data="partner"
+                                                            <select class="form-control" id="store_city" data="partner" name="store_city"
                                                                     ref="#partner_id">
                                                                 <option value="">请选择</option>
                                                             </select>
@@ -265,8 +264,7 @@
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <br/>
-                                                            <select class="form-control" id="partner_id"
-                                                                    name="partner_id">
+                                                            <select class="form-control" id="partner_id" name="partner_id">
                                                                 <option value="">请选择门店</option>
                                                             </select>
                                                         </div>
@@ -359,9 +357,9 @@
                                             <dt>可获得积分:</dt>
                                             <dd>{{$total_credit}}</dd>
                                             <dt>运费:</dt>
-                                            <dd id="shop_fee">{{$ship_fee}}</dd>
+                                            <dd id="ship_fee" data="{{$ship_fee}}">￥{{$ship_fee}}</dd>
                                             <dt>共计:</dt>
-                                            <dd id="paid_fee">￥{{$pay_fee}}</dd>
+                                            <dd id="paid_fee" data="{{$pay_fee}}" data2="{{Cart::total() }}">￥{{$pay_fee}}</dd>
                                         </dl>
                                     </div>
                                 </div>
