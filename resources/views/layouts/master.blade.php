@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="_token" content="{{ csrf_token() }}"/>
-        <title>@yield('title')</title>
+        <title>@yield('title')-蓓爱网</title>
         <!-- Bootstrap core CSS
         ================================================== -->
         <link href="/uikit/css/bootstrap.min.css" rel="stylesheet">

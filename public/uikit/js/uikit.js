@@ -4869,7 +4869,15 @@ $(window).load(function() {
 				$('#fmAddress').serialize(),
 
 				function (data) {
-					alert('保存成功');
+                    if (data==0){
+                      return  alert('保存失败，请重试');
+                    }
+					$('#addressModal').modal('hide');
+                    $('#addressList div.active').removeClass('active');
+                    var address='<div class="col-md-4" onclick="selected_address(this,"+ data.id+")" ><div class="address active"><strong>'+ data.name +' '+ data.receiver_name+ '（收）</strong><br>'+ data.address +'<br>'+ data.receiver_mobile+' '+data.receiver_telephone +'<br><a>&nbsp;&nbsp;</a> <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span> </div></div>';
+                    $('#addressList').append(address);
+                    $('#address_id').val(data.id);
+                    $('#address_id').next('label.error').html("");
 				},
 				function () {
 					alert('保存失败，请重试');
@@ -4879,6 +4887,41 @@ $(window).load(function() {
 		}
 	});
 
+
+    $("#fmUserAddress").validate({
+        rules: {
+            receiver_name: "required",
+            receiver_province: "required",
+            receiver_city: "required",
+            receiver_address: {
+                required: true,
+                maxlength: 120
+            },
+            receiver_mobile: {
+                required: true,
+                isTel: true
+            },
+            receiver_phone: {
+                isPhone: true
+            }
+        },
+        messages: {
+            receiver_name: "请墳写收件人姓名",
+            receiver_province: "请选择所在省",
+            receiver_city: "请填写所在城市",
+            receiver_address: {
+                required: "请填写收件地址",
+                maxlength: "收件地址过长"
+            },
+            receiver_mobile: {
+                required: '收件人联系电话必填',
+                isTel: '请输入正确的电话'
+            },
+            receiver_phone: {
+                isPhone: '请输入正确的联系电话'
+            },
+        }
+    });
 	$("#checkoutForm").validate({
 		rules: {
 			receiver_name: "required",
@@ -4977,6 +5020,128 @@ $(window).load(function() {
 	});
 
 
+    $("#checkoutForm2").validate({
+        ignore: "not:hidden",
+        rules: {
+            address_id: "required",
+            booker_name: {
+                required: true
+            },
+            booker_phone: {
+                required:true,
+                isPhone: true
+            },
+            booker_email: {
+                email: true
+            },
+            require_send_day:{
+                required: true
+            },
+            require_send_time: {
+                required: "#require_send_type5:checked"
+            },
+            card:{
+                maxlength:500
+            },
+            special_content:{
+                maxlength: 120
+            },
+            store_province: {
+                required: "#self_get:checked"
+            },
+            store_city: {
+                required: "#self_get:checked"
+            },
+            partner_id: {
+                required: "#self_get:checked"
+            }
+        },
+        messages: {
+            address_id: "收件人地址不能不空",
+            booker_name: {
+                required: '订购人电话不能为空'
+            },
+            booker_phone: {
+                required:'订购人电话不能为空',
+                isPhone: '请输入正确遥电话'
+            },
+            booker_email: {
+                email: '请输入正确的电子邮箱'
+            },
+            require_send_day:{
+                required: '配送日期不能为空'
+            },
+            require_send_time: {
+                required: "定时不能为空"
+            },
+            card:{
+                maxlength:'贺卡内容太长了'
+            },
+            special_content:{
+                maxlength:'留言内容过长'
+            },
+            store_province: {
+                required: "必选"
+            },
+            store_city: {
+                required: "必选"
+            },
+            partner_id: {
+                required: "必选"
+            }
+        }
+    });
+
+    $('#fmUserPassword').validate({
+        rules: {
+            old_password: "required",
+            password: {
+                required: true,
+                rangelength:[6,12],
+            },
+            password_confirmation:{
+                required:true,
+                equalTo:'#password'
+            }
+        },
+        messages:{
+            'old_password':'旧密码不能为空',
+            'password':{
+                required:'密码必埴',
+                rangelength:'密码长度为6到12',
+            },
+            'password_confirmation':{
+                required:'重复密码不能为空',
+                equalTo:'二次密码不一致'
+            }
+        }
+    });
+
+    $("#fmUserDay").validate({
+        rules: {
+            name: "required",
+            date: {
+                required: true
+            },
+            remind_beforeday:{
+                required: "#remind_enable:checked"
+            },
+            remind_email: {
+                required: "#remind_enable:checked"
+            }
+        },
+        messages: {
+            name: "必填",
+            date: "必填",
+            remind_beforeday:{
+                required:'打开提醒时，必填'
+            },
+            remind_email: {
+                required:'打开提醒时，必填'
+            }
+        }
+    });
+
 	var post=function(url,data,success,error){
 		$.ajax({
 			type: 'POST',
@@ -4992,3 +5157,9 @@ $(window).load(function() {
 	};
 
 });
+
+function selected_address(element,id){
+    $('#addressList div.active').removeClass('active');
+    $(element).find('div.address').addClass('active');
+    $('#address_id').val(id);
+}

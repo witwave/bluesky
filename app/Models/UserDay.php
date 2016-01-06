@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserDay extends Model {
 
-	protected $table = 'user_day';
+	protected $table = 'user_days';
 
 	protected $fillable = ['user_id', 'date', 'name'];
 

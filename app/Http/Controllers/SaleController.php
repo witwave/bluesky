@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderProduct;
+use App\Models\UserAddress;
 use Cart;
 use Auth;
 use Illuminate\Support\Facades\Input;
@@ -37,7 +38,7 @@ class SaleController extends Controller
     {
         $cart = Cart::content();
         if ($cart == null || count($cart) < 1) {
-            return redirect(array("/"));
+            return redirect("/");
         }
 
         $cartInfo = $this->getCartInfo($cart);
@@ -66,7 +67,9 @@ class SaleController extends Controller
 
         $times = array('9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00');
 
+        $addresses=null;
         if (Auth::user()) {
+            $addresses=UserAddress::all();
             $view = 'sale.checkout';
         } else {
             $view = 'sale.checkout-guest';
@@ -79,7 +82,8 @@ class SaleController extends Controller
             'province' => $province,
             'date_picker_options' => json_encode($date_picker_options),
             'require_send_day' => date("Y-m-d", strtotime("+1 day")),
-            'times' => $times
+            'times' => $times,
+            'addresses'=>$addresses
         ));
     }
 
@@ -89,16 +93,19 @@ class SaleController extends Controller
 
         $cart = Cart::content();
         if ($cart == null || count($cart) < 1) {
-            return redirect(array("/"));
+            return redirect("/");
         }
 
 
+
         $validator = Validator::make($request->all(), [
-            'receiver_name' => 'required',
-            'receiver_province' => 'required',
-            'receiver_city' => 'required',
-            'receiver_address' => 'required',
-            'receiver_mobile' => 'required',
+            'receiver_name' => 'required_if:address_id,null',
+            'receiver_province' => 'required_if:address_id,null',
+            'receiver_city' => 'required_if:address_id,null',
+            'receiver_address' => 'required_if:address_id,null',
+            'receiver_mobile' => 'required_if:address_id,null',
+
+            'address_id' => 'required_if:receiver_name,null',
             //'receiver_phone' => 'required',
             'booker_name' => 'required',
             'booker_phone' => 'required',
@@ -122,11 +129,26 @@ class SaleController extends Controller
                 ->withInput();
         }
 
+        $new_order = new Order;
 
         $user_id = Auth::user() ? Auth::user()->id : null;
         $user_type = 0;
         if ($user_id == null) {
             $user_type = 1;//游客订单
+            $new_order->receiver_name = Input::get('receiver_name');
+            $new_order->receiver_province = Input::get('receiver_province');
+            $new_order->receiver_city = Input::get('receiver_city');
+            $new_order->receiver_address = Input::get('receiver_address');
+            $new_order->receiver_mobile = Input::get('receiver_mobile');
+            $new_order->receiver_telephone = Input::get('receiver_phone');
+        }else{
+           $address= UserAddress::find((int)Input::get('address_id'));
+            $new_order->receiver_name =$address->receiver_name;
+            $new_order->receiver_province = $address->province;
+            $new_order->receiver_city =$address->city;
+            $new_order->receiver_address = $address->address;
+            $new_order->receiver_mobile =$address->receiver_mobile;
+            $new_order->receiver_telephone = $address->receiver_telephone;;
         }
         $mail_fee = 0;
         $total_price = Cart::total();
@@ -154,19 +176,14 @@ class SaleController extends Controller
         }
 
 
-        $new_order = new Order;
+
         $new_order->user_id = $user_id;
         $new_order->paid = $paid;
         $new_order->transaction_id = $out_order_id;
         $new_order->payment_status = 'wait';
 
         $new_order->out_order_id = $out_order_id;
-        $new_order->receiver_name = Input::get('receiver_name');
-        $new_order->receiver_province = Input::get('receiver_province');
-        $new_order->receiver_city = Input::get('receiver_city');
-        $new_order->receiver_address = Input::get('receiver_address');
-        $new_order->receiver_mobile = Input::get('receiver_mobile');
-        $new_order->receiver_telephone = Input::get('receiver_phone');
+
         $new_order->booker_name = Input::get('booker_name');
         $new_order->booker_phone = Input::get('booker_phone');
         $new_order->booker_email = Input::get('booker_email');

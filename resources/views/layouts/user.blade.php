@@ -22,7 +22,7 @@
                             <span class="glyphicon glyphicon-credit-card "></span> 重要节日
                         </a>
                         <a href="/user/address" class="list-group-item  {{ str_contains(Request::path(),'address')?'active':'' }}">
-                            <span class="glyphicon glyphicon-credit-card"></span> 收货地址
+                            <span class="glyphicon glyphicon-credit-card"></span> 常用地址
                         </a>
                         <a href="/user/password" class="list-group-item  {{ str_contains(Request::path(),'password')?'active':'' }}">
                             <span class="glyphicon glyphicon-lock"></span> 修改密码

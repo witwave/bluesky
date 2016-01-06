@@ -107,8 +107,8 @@
             <!-- /Cart -->
             <!-- Cart Buttons -->
             <div class="cart-buttons clearfix">
-                <a class="btn btn-base checkout" href="checkout.html"><i class="icon-left fa fa-shopping-cart"></i>去结算</a>
-                <a class="btn btn-primary checkout" href="category.html"><i class="icon-left fa fa-arrow-left"></i>继续购物</a>
+                <a class="btn btn-primary checkout" href="/checkout.html"><i class="icon-left fa fa-shopping-cart"></i>去结算</a>
+                <a class="btn btn-base checkout" href="/category.html"><i class="icon-left fa fa-arrow-left"></i>继续购物</a>
             </div>
             <!-- /Cart Buttons -->
             @else
@@ -117,7 +117,7 @@
                 </div>
                 <div class="cart-buttons clearfix">
 
-                <a class="btn btn-primary checkout" href="category.html"><i class="icon-left fa fa-arrow-left"></i>去购物吧</a></div>
+                <a class="btn btn-primary checkout" href="/category.html"><i class="icon-left fa fa-arrow-left"></i>去购物吧</a></div>
             @endif
         </div>
         <!-- /Container -->
