@@ -32,7 +32,7 @@
                       @if ($index<4)
                     <li>
                       <a href="{{ $imagine->getUrl($img->path,'medium')}}" data-gal="prettyPhoto[gallery {{ $index }}]" title="{{ $item->name }}">
-                        <img src="{{ $imagine->getUrl($img->path)}}" alt="{{ $item->name }}">
+                        <img src="{{ $imagine->getUrl($img->path,'medium')}}" alt="{{ $item->name }}">
                       </a>
                     </li>
                     @endif
@@ -101,7 +101,7 @@
                       @if ($index<4)
                      <li>
                       <a href="/product/{{ $item->id }}.html">
-                        <img src="{{ $imagine->getUrl($img->path)}}" alt="{{ $item->name }}">
+                        <img src="{{ $imagine->getUrl($img->path,'medium')}}" alt="{{ $item->name }}">
                       </a>
                     </li>
                     @endif
@@ -168,8 +168,8 @@
                     @foreach ($item->images as $index=>$img)
                      @if ($index<4)
                     <li>
-                      <a href="{{ $imagine->getUrl($img->path,'medium')}}" data-gal="prettyPhoto[gallery {{ $index }}]" title="{{ $item->name }}">
-                        <img src="{{ $imagine->getUrl($img->path)}}" alt="{{ $item->name }}">
+                      <a href="{{ $imagine->getUrl($img->path)}}" data-gal="prettyPhoto[gallery {{ $index }}]" title="{{ $item->name }}">
+                        <img src="{{ $imagine->getUrl($img->path,'medium')}}" alt="{{ $item->name }}">
                       </a>
                     </li>
                     @endif
@@ -201,7 +201,7 @@
                     <span class="price price-old">{{$item->market_price}}</span>
                     @endif
                     <span class="price">￥{{ $item->price}}</span>
-   
+
                   </div>
                   <!-- /Price Box -->
                   <!-- buttons -->

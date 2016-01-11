@@ -9,6 +9,8 @@ use App\Helpers\RegionHelper;
 use Illuminate\Support\Facades\Input;
 use DB;
 use App\Models\UserDay;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use Illuminate\Support\Facades\Request;
 use Validator;
 
@@ -36,7 +38,18 @@ class UserController extends Controller
 
     public function order()
     {
-        return view('user.order');
+        $user=Auth::user();
+        $orders=Order::where('user_id', '=', $user->id)->orderBy('id','desc')->get();
+        return view('user.order')->with('orders',$orders);
+    }
+
+    public function credit()
+    {
+        $user=Auth::user();
+        $credit=$user->total_credit-$user->used_credit;
+        return view('user.credit',[
+          'credit'=>$credit
+        ]);
     }
 
     public function address()
@@ -109,10 +122,6 @@ class UserController extends Controller
         }
     }
 
-    public function credit()
-    {
-        return view('user.credit');
-    }
 
     public function day()
     {

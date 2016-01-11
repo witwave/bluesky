@@ -64,12 +64,19 @@
                     <!-- /Dropdown Panel -->
                   </li>
                   <li class="dropdown has-panel">
-                    <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-left ti ti-pencil-alt"></i><span class="hidden-sm">注册</span><i class="fa fa-angle-down toggler hidden-xs"></i></a>
+               <a aria-expanded="false" href="/auth/register" class="dropdown-toggle"><i class="icon-left ti ti-pencil-alt"></i><span class="hidden-sm">注册</span><i class="fa fa-angle-down toggler hidden-xs"></i></a> 
+                    <!-- <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-left ti ti-pencil-alt"></i><span class="hidden-sm">注册</span><i class="fa fa-angle-down toggler hidden-xs"></i></a> -->
                     <!-- Dropdown Panel -->
-                    <div class="dropdown-menu dropdown-panel arrow-top" data-keep-open="true">
+                    <div class="dropdown-menu dropdown-panel arrow-top hide" data-keep-open="true">
                       <fieldset>
-                        <form method="post" action="/auth/register">
+                        <form method="POST" action="/auth/register">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                              <input name="nickname" class="form-control" placeholder="呢称" type="text">
+                            </div>
+                          </div>
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-addon"><i class="fa fa-user"></i></div>

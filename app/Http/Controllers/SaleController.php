@@ -158,8 +158,8 @@ class SaleController extends Controller
 
         $self_get = Input::get('self_get', 0);
         if ($self_get == 0) {
-            $ship_fee = $cartInfo['ship_fee'];
-            $paid = $total_price + $ship_fee;
+            $mail_fee = $cartInfo['ship_fee'];
+            $paid = $total_price + $mail_fee;
         } else {
             $paid = $total_price;
         }
@@ -219,6 +219,7 @@ class SaleController extends Controller
                     $orderProduct->mail_fee = $model->ship_fee + ($item->qty - 1) * $model->ship_one_fee;
                     $orderProduct->price = $model->price;
                     $orderProduct->name = $model->name;
+                    $orderProduct->qty=$item->qty;
                     $name[] = $model->name;
                     $orderProduct->credit = $model->credit * $item->qty;
                     $orderProduct->total_price = $model->price * $item->qty;

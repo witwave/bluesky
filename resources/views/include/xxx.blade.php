@@ -7,7 +7,7 @@
     <div class="promo-text">
       <h5></h5>
       <h1 class="boxed hide"></h1>
-      <p></p>
+      <p>如果爱，请深爱</p>
       <a class="btn btn-primary btn-borderless hide
       "></a>
     </div>

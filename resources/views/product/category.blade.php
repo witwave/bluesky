@@ -88,7 +88,7 @@
                                                     @if ($index<4)
                                                         <li>
                                                             <a href="/product/{{ $item->id }}.html" title="{{ $item->name }}">
-                                                                <img src="{{ $imagine->getUrl($img->path)}}" alt="{{ $item->name }}">
+                                                                <img src="{{ $imagine->getUrl($img->path,'medium')}}" alt="{{ $item->name }}">
                                                             </a>
                                                         </li>
                                                     @endif
@@ -204,5 +204,3 @@
         <!-- /Container -->
     </section>
 @endsection
-
-
