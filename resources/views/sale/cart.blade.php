@@ -76,7 +76,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3" rowspan="3" class="terms">
+                            <td colspan="3" rowspan="3" class="terms" style="border-right: 1px solid #DDD;">
                                 <h5><i class="fa fa-info-circle"></i> 说明</h5>
                             </td>
                             <td style="border-bottom: 1px solid #DDD;">
