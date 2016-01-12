@@ -36,7 +36,7 @@
                     <tbody>
                     <?php $total_credit = 0?>
                     @foreach($cart as $row)
-                        <?php $total_credit += $row->credit * $row->qty?>
+                        <?php $total_credit += $row->options->credit * $row->qty?>
                         <tr>
                             <td class="image hidden-xs">
                                 <img src="{{ $row->options->image}}" alt="{{ $row->name }}">

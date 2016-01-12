@@ -354,8 +354,6 @@
                                         <dl class="dl-horizontal pull-right">
                                             <dt>商品总价:</dt>
                                             <dd>￥{{Cart::total()}}</dd>
-                                            <dt>可获得积分:</dt>
-                                            <dd>{{$total_credit}}</dd>
                                             <dt>运费:</dt>
                                             <dd id="ship_fee" data="{{$ship_fee}}">￥{{$ship_fee}}</dd>
                                             <dt>共计:</dt>
