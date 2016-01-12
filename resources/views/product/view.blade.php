@@ -108,10 +108,18 @@
                         <!-- Manufacturer Starts -->
                         <ul class="list-unstyled manufacturer">
                             <li>
-                                <span>品牌:</span> {{$product->brand}}
+                                <span>品牌:</span> {{ Config::get('mall.brand')[$product->brand] }}
                             </li>
+                            <li>
+                                <span>颜色:</span> {{ Config::get('mall.color')[$product->color] }}
+                            </li>
+                            <li>
+                                <span>类型:</span> {{ Config::get('mall.type')[$product->type] }}
+                            </li>
+
                             <li><span>积分:</span> {{$product->credit}}</li>
                             <li><span>花材:</span> {{$product->material}}</li>
+                            <li><span>花语:</span> {{$product->flower_description}}</li>
                         </ul>
                         <!-- Manufacturer Ends -->
                         <hr/>
@@ -123,7 +131,7 @@
                                        class="form-control" style="width: 80px"  onblur="if(this.value<0) this.value=1" />
                             </div>
                         </div>
-                        <a onclick="var qty=$('#input-quantity').val(); this.href=this.href+'&q='+qty;return true " href="/cart.html?id={{ $product->id }}" class="btn btn-default btn-bigger" ><i class="icon-left ti ti-shopping-cart"></i>加入购物车</a>
+                        <a onclick="var qty=$('#input-quantity').val(); this.href=this.href+'&q='+qty;return true " href="/cart.html?id={{ $product->id }}" class="btn btn-primary btn-bigger" ><i class="icon-left ti ti-shopping-cart"></i>加入购物车</a>
 
                     </div>
                     <!-- /Col -->
@@ -148,7 +156,7 @@
 
                             <div class="content panel-smart">
                                 <p>
-                                    {{$product->ship_description}}
+                                    {{$product->ship_mark}}
                                 </p>
                             </div>
                         </div>

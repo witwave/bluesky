@@ -55,6 +55,8 @@ class ProductController extends Controller
     public function view($id)
     {
         $product = Product::findOrFail($id);
+        $product->pv=$product->pv+1;
+        $product->update();
         return view('product.view',
             [
                 'product' => $product,
