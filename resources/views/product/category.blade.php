@@ -1,5 +1,5 @@
 @section('title')
-    当季新品
+{{ $name }}
 @endsection
 @extends('layouts.main')
 @section('content')
