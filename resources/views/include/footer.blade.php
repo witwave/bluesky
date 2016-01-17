@@ -15,7 +15,7 @@
               <div class="vcenter">
                 <a class="vcenter-this" href="#">
 
-                  <img src="/images/logo1.png" alt="BELOVED">
+                  <img src="/images/logo-footer.png" alt="BELOVED">
                 </a>
               </div>
             </div>

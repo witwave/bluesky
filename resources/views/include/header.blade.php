@@ -13,7 +13,7 @@
           <!-- v-centered -->
           <div class="vcenter-this">
             <a href="/">
-              <img src="/images/logo1.png" alt="BELOVED">
+              <img src="/images/logo.png" alt="BELOVED">
             </a>
           </div>
           <!-- v-centered -->
@@ -64,7 +64,7 @@
                     <!-- /Dropdown Panel -->
                   </li>
                   <li class="dropdown has-panel">
-               <a aria-expanded="false" href="/auth/register" class="dropdown-toggle"><i class="icon-left ti ti-pencil-alt"></i><span class="hidden-sm">注册</span><i class="fa fa-angle-down toggler hidden-xs"></i></a> 
+               <a aria-expanded="false" href="/auth/register" class="dropdown-toggle"><i class="icon-left ti ti-pencil-alt"></i><span class="hidden-sm">注册</span><i class="fa fa-angle-down toggler hidden-xs"></i></a>
                     <!-- <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-left ti ti-pencil-alt"></i><span class="hidden-sm">注册</span><i class="fa fa-angle-down toggler hidden-xs"></i></a> -->
                     <!-- Dropdown Panel -->
                     <div class="dropdown-menu dropdown-panel arrow-top hide" data-keep-open="true">

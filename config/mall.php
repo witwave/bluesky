@@ -10,11 +10,11 @@ return [
 		2=>'内部人员',
 		3=>'管理员',
 	],
-	aplipay=>[
-		'partner'=>'',
-		'key'=>'',
-		'seller_email'=>'',
-		'return_url'=>'http://www.bdbeloved.com/alipay/return',
-		'notify_url'=>'http://www.bdbeloved.com/alipay/notify'
+	'aplipay'=>[
+		'pid'=>env('ALIPAY_PID', 'SomeRandomString'),
+		'key'=>env('ALIPAY_KEY', 'SomeRandomString'),
+		'seller_email'=>env('ALIPAY_KEY', 'SomeRandomString'),
+		'return_url'=>env('ALIPAY_RETRUN', 'SomeRandomString'),
+		'notify_url'=>env('ALIPAY_NOTIFY', 'SomeRandomString')
 	]
 ];

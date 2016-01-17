@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Input;
 use App\Helpers\RegionHelper;
 use Illuminate\Http\Request;
 use Validator;
+use Log;
 
 use Omnipay\Omnipay;
 
@@ -257,7 +258,7 @@ class SaleController extends Controller
                     $alipay->setTotalFee($paid);
                     $alipay->setSubject($name[0]);
                     $alipay->setBody(implode(",",$name));
-                    $alipay->setQrPayMode('4'); //该设置为可选，添加该参数设置，支持二维码支付。
+                    //$alipay->setQrPayMode('4'); //该设置为可选，添加该参数设置，支持二维码支付。
 
                     // 跳转到支付页面。
                     return redirect()->to($alipay->getPayLink());
@@ -306,12 +307,18 @@ class SaleController extends Controller
     }
 
     /**
-     * 同步通知
+     *同步通知
+     *WAIT_BUYER_PAY	交易创建，等待买家付款。
+     *TRADE_CLOSED	在指定时间段内未支付时关闭的交易；
+     *在交易完成全额退款成功时关闭的交易。
+     *TRADE_SUCCESS	交易成功，且可对该交易做操作，如：多级分润、退款等。
+     *TRADE_PENDING	等待卖家收款（买家付款后，如果卖家账号被冻结）。
+     *TRADE_FINISHED	交易成功且结束，即不可再做任何操作。
      */
     public function webReturn()
     {
         // 验证请求。
-        if (! app('alipay.web')->verify()) {
+        if (!app('alipay.web')->verify()) {
             Log::notice('Alipay return query data verification fail.', [
                 'data' => Request::getQueryString()
             ]);
@@ -320,6 +327,8 @@ class SaleController extends Controller
 
         // 判断通知类型。
         switch (Input::get('trade_status')) {
+            case 'TRADE_CLOSED':
+
             case 'TRADE_SUCCESS':
             case 'TRADE_FINISHED':
                 // TODO: 支付成功，取得订单号进行其它相关操作。
