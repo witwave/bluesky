@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@section('title')
+订单结算页
+@endsection
 @section('content')
     <section class="page-info-block boxed-section">
         <!-- Container -->

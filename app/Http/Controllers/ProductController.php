@@ -14,6 +14,15 @@ class ProductController extends Controller
 {
 
 
+  public function image($id){
+    $product = Product::findOrFail($id);
+    $imagine=new RImage();
+    if(count($product->images)>0){
+      $img=$product->images[0];
+      return redirect()->to('/'.$imagine->getUrl($img->path));
+    }
+  }
+
     public function index($id = null)
     {
         $main=array(2=>'蓓爱之选',4=>'花礼',15=> '爱品') ;

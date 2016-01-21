@@ -35,7 +35,12 @@
             </tr>
                 @foreach($row->products as $index=>$product)
                     <tr>
-                        <td>{{ $product->name}}</td>
+                        <td>
+                           <a href="/product/{{$product->product_id}}.html">
+                                    <img src="/img/{{$product->product_id}}"/>
+                                    {{ $product->name}}
+                            </a>
+                        </td>
                         <td style="text-align:center;vertical-align:middle">{{ $product->price}}</td>
                         <td style="text-align:center;vertical-align:middle">{{ $product->qty}}</td>
                         <td style="text-align:center;vertical-align:middle">{{ $product->mail_fee}}</td>
@@ -46,10 +51,10 @@
                           </td>
                           @if($row->payment_status=="wait")
                           <td  style="text-align:center;vertical-align:middle" rowspan="{{ count($row->products)}}">
-                            <a href="" style="display:block"><small>等待付款</small></a>
-                            <a href=""><small>订单详情</small></a>
+                            <a style="display:block"><small>等待付款</small></a>
+                            <a href="/order/{{ $row->out_order_id }}"><small>订单详情</small></a>
                           </td>
-                          <td style="text-align:center;vertical-align:middle" rowspan="{{ count($row->products)}}"><a href="#">去付款</a></td>
+                          <td style="text-align:center;vertical-align:middle" rowspan="{{ count($row->products)}}"><a href="/pay/{{$row->out_order_id}}">去付款</a></td>
                           @endif
                         @endif
                     </tr>

@@ -14,6 +14,7 @@ use App\Helpers\RegionHelper;
 use Illuminate\Http\Request;
 use Validator;
 use Log;
+use App\Models\Transation;
 
 use Omnipay\Omnipay;
 
@@ -140,6 +141,9 @@ class SaleController extends Controller
             $new_order->receiver_province = Input::get('receiver_province');
             $new_order->receiver_city = Input::get('receiver_city');
             $new_order->receiver_address = Input::get('receiver_address');
+            $region = DB::select('select region_code,region_name from region where region_code = ? or region_code=?  order by region_code limit 2', array(  $new_order->receiver_province, $new_order->receiver_city));
+            $address->receiver_address = $region[0]->region_name . $region[1]->region_name.Input::get('receiver_address');
+
             $new_order->receiver_mobile = Input::get('receiver_mobile');
             $new_order->receiver_telephone = Input::get('receiver_phone');
         }else{
@@ -147,7 +151,7 @@ class SaleController extends Controller
             $new_order->receiver_name =$address->receiver_name;
             $new_order->receiver_province = $address->province;
             $new_order->receiver_city =$address->city;
-            $new_order->receiver_address = $address->address;
+            $new_order->receiver_address =$address->name.$address->address;
             $new_order->receiver_mobile =$address->receiver_mobile;
             $new_order->receiver_telephone = $address->receiver_telephone;;
         }
@@ -190,6 +194,7 @@ class SaleController extends Controller
         $new_order->booker_email = Input::get('booker_email');
         $new_order->require_send_day = Input::get('require_send_day');
         $new_order->require_send_type = Input::get('require_send_type');
+        $new_order->require_send_time = Input::get('require_send_time');
         $new_order->card = Input::get('card');
         $new_order->special_content = Input::get('special_content');
         $new_order->self_get = Input::get('self_get');
@@ -291,19 +296,52 @@ class SaleController extends Controller
             ]);
             return 'fail';
         }
-
+        $this->saveTrans();
+        $out_trade_no=Input::get('out_trade_no');
+        $payment_status='wait';
         // 判断通知类型。
         switch (Input::get('trade_status')) {
             case 'TRADE_SUCCESS':
             case 'TRADE_FINISHED':
-                // TODO: 支付成功，取得订单号进行其它相关操作。
+                // 支付成功，取得订单号进行其它相关操作。
                 Log::debug('Alipay notify post data verification success.', [
                     'out_trade_no' => Input::get('out_trade_no'),
                     'trade_no' => Input::get('trade_no')
                 ]);
+                $payment_status='success';
+                break;
+           default:
+                $payment_status='fail';
                 break;
         }
+        Order::update(array('out_order_id'=>$out_trade_no),array('payment_status'=>$payment_status,'payment_time'=>date('Y-m-d H:i:s')));
         return 'success';
+    }
+
+
+    private function saveTrans(){
+      $trans=new Transation();
+      $trans->is_success=Input::get('is_success');
+      $trans->sign_type=Input::get('sign_type');
+      $trans->out_trade_no=Input::get('out_trade_no');
+      $trans->subject=Input::get('subject');
+      $trans->payment_type=Input::get('payment_type');
+      $trans->exterface=Input::get('exterface');
+      $trans->trade_no=Input::get('trade_no');
+      $trans->trade_status=Input::get('trade_status');
+      $trans->notify_id=Input::get('notify_id');
+      $trans->notify_time=Input::get('notify_time');
+      $trans->notify_type=Input::get('notify_type');
+      $trans->seller_email=Input::get('seller_email');
+      $trans->buyer_email=Input::get('buyer_email');
+      $trans->seller_id=Input::get('seller_id');
+      $trans->buyer_id=Input::get('buyer_id');
+      $trans->is_success=Input::get('is_success');
+      $trans->total_fee=Input::get('total_fee');
+      $trans->extra_common_param=Input::get('extra_common_param');
+      $trans->body=Input::get('body');
+      $trans->agent_user_id=Input::get('agent_user_id');
+      $trans->save();
     }
 
     /**
@@ -322,13 +360,14 @@ class SaleController extends Controller
             Log::notice('Alipay return query data verification fail.', [
                 'data' => Request::getQueryString()
             ]);
-            return view('alipay.fail');
+            return  Request::getQueryString();
         }
-
+        $this->saveTrans();
+        $out_trade_no=Input::get('out_trade_no');
+        $payment_status='wait';
         // 判断通知类型。
         switch (Input::get('trade_status')) {
             case 'TRADE_CLOSED':
-
             case 'TRADE_SUCCESS':
             case 'TRADE_FINISHED':
                 // TODO: 支付成功，取得订单号进行其它相关操作。
@@ -336,10 +375,41 @@ class SaleController extends Controller
                     'out_trade_no' => Input::get('out_trade_no'),
                     'trade_no' => Input::get('trade_no')
                 ]);
+                $payment_status='success';
+                break;
+           default:
+                $payment_status='fail';
                 break;
         }
+        $result = Order::update(array('out_order_id'=>$out_trade_no),array('payment_status'=>$payment_status,'payment_time'=>date('Y-m-d H:i:s')));
+        return view('order.index',[
+          'order'=>Order::where('out_order_id','=',$out_trade_no)->first()
+        ]);
+    }
 
-        return view('alipay.success');
+
+    public function pay($id){
+      $order=Order::where('out_order_id','=',$id)->first();
+      if (!$order){
+         return '找不到订单'+$id;
+      }
+      $pay_type=Input::get('pay_type',$order->pay_type);
+      switch ($pay_type) {
+          case "1":
+              // 创建支付单。
+              $alipay = app('alipay.web');
+              $alipay->setOutTradeNo($id);
+              $alipay->setTotalFee($order->paid);
+              $alipay->setSubject($order->products[0]->name);
+              $alipay->setBody($order->products[0]->name);
+              //$alipay->setQrPayMode('4'); //该设置为可选，添加该参数设置，支持二维码支付。
+              // 跳转到支付页面。
+              return redirect()->to($alipay->getPayLink());
+              break;
+          default:
+              break;
+      }
+
     }
 
 }

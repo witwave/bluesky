@@ -54,9 +54,17 @@ Route::get('/blog/{id}.html', function () {
 
 Route::get('/product/{id}.html', 'ProductController@view');
 
+Route::get('/img/{id}', 'ProductController@image');
+
 Route::get('/product2/{id}', function () {
 	return view('product.view-full');
 });
+
+Route::get('/order/{id}','OrderController@view');
+
+Route::get('/pay/{id}','SaleController@pay');
+Route::post('/pay/{id}','SaleController@pay');
+
 
 //支付
 Route::any('/alipay/return', 'SaleController@webReturn');

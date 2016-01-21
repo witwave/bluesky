@@ -44,15 +44,15 @@
                 <div class="col-xs-6 col-sm-3 col-md-3">
                   <h5>会员</h5>
                   <ul class="vlinks">
-                    <li><a href="#">帐号</a></li>
-                    <li><a href="#">历史订单</a></li>
-                    <li><a href="#">购物车</a></li>
+                    <li><a href="/user/profile">帐号</a></li>
+                    <li><a href="/user/order">历史订单</a></li>
+                    <li><a href="/cart.html">购物车</a></li>
                   </ul>
                 </div>
                 <!-- /Col -->
 
                 <!-- Col -->
-                <div class="col-xs-6 col-sm-3 col-md-3 newsletter">
+                <div class="col-xs-6 col-sm-3 col-md-3 newsletter hide">
                   <h5>订阅新品</h5>
                   <form>
                     <input type="text" class="form-control" placeholder="电子邮箱">

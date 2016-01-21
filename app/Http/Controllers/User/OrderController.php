@@ -6,23 +6,13 @@ use App\Http\Controllers\Controller;
 
 class OrderController extends Controller {
 
-	public function show() {
-		return "show order";
+	public function show($id) {
+
+		$order=Order::where('out_order_id','=',$id);
+		retrun view('order.index',[
+			'order'=>$order
+		])
 	}
 
-	public function updateProfile() {
-		$profile = Post::findOrFail($id);
 
-		if (Gate::denies('update-profile', $profile)) {
-			abort(403);
-		}
-
-		if (Auth::user()) {
-			// Auth::user() returns an instance of the authenticated user...
-		}
-
-		if (Auth::viaRemember()) {
-			//
-		}
-	}
 }
