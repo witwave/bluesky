@@ -49,9 +49,19 @@
                             {{ $row->paid}}<br/>
                             (含运费：{{ $row->mail_fee}})
                           </td>
-                          @if($row->payment_status=="wait")
+                          @if($row->payment_status=="success")
+                          <td  style="text-align:center;vertical-align:middle" rowspan="{{ count($row->products)}}">
+                            <a style="display:block"><small>已付款</small></a>
+                            <br>
+                            <a href="/order/{{ $row->out_order_id }}"><small>订单详情</small></a>
+                          </td>
+                          <td style="text-align:center;vertical-align:middle" rowspan="{{ count($row->products)}}">
+                            <a href="/confirm/{{$row->out_order_id}}">确认收货</a>
+                          </td>
+                          @else
                           <td  style="text-align:center;vertical-align:middle" rowspan="{{ count($row->products)}}">
                             <a style="display:block"><small>等待付款</small></a>
+                            <br>
                             <a href="/order/{{ $row->out_order_id }}"><small>订单详情</small></a>
                           </td>
                           <td style="text-align:center;vertical-align:middle" rowspan="{{ count($row->products)}}"><a href="/pay/{{$row->out_order_id}}">去付款</a></td>

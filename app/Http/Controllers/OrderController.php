@@ -31,6 +31,13 @@ class OrderController extends Controller {
 		}else{
 			return 'error';
 		}
+	}
 
+	public function confirm($id)
+	{
+			$order=Order::where('out_order_id','=',$id)->firstOrFail();
+			$order->status=2;//已经确认收货
+			$order->save();
+			return redirect()->to('/order/'.$id);
 	}
 }

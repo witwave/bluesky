@@ -62,6 +62,10 @@ Route::get('/product2/{id}', function () {
 
 Route::get('/order/{id}','OrderController@view');
 
+//确认收货
+Route::get('/confirm/{id}','OrderController@confirm');
+
+
 Route::get('/pay/{id}','SaleController@pay');
 Route::post('/pay/{id}','SaleController@pay');
 

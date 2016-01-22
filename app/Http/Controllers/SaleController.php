@@ -324,13 +324,15 @@ class SaleController extends Controller
       $order=Order::where('out_order_id','=',$out_order_id)->first();
       if($order){
         $order->payment_status=$payment_status;
+        if ($payment_status==='success'){
+            $order->status=1;//已经付款
+        }
         $order->payment_time=date('Y-m-d H:i:s');
         return $order->save();
       }
       Log::warning('没有找到订单,'.$out_order_id);
       return false;
     }
-
 
     private function saveTrans(){
       $trans=new Transation();
