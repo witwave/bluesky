@@ -362,9 +362,7 @@ class SaleController extends Controller
             ]);
             $out_trade_no=Input::get('out_trade_no');
             if ($out_trade_no){
-                return view('order.index',[
-                      'order'=>Order::where('out_order_id','=',$out_trade_no)->first()
-                ]);
+                return redirect()->to('/order/'.$out_trade_no);
            }else{
                return  redirect()->to('/user/order');
            }
