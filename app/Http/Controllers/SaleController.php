@@ -314,8 +314,21 @@ class SaleController extends Controller
                 $payment_status='fail';
                 break;
         }
-        Order::update(array('out_order_id'=>$out_trade_no),array('payment_status'=>$payment_status,'payment_time'=>date('Y-m-d H:i:s')));
+        $this->updateOrderPayStatus($out_trade_no,$payment_status);
         return 'success';
+    }
+
+
+    public function updateOrderPayStatus($out_order_id,$payment_status)
+    {
+      $order=Order::where('out_order_id','=',$id)->first();
+      if($order){
+        $order->payment_status=$payment_status;
+        $order->payment_time=date('Y-m-d H:i:s');
+        return $order->save();
+      }
+      Log::warning('没有找到订单,'.$out_order_id);
+      return false;
     }
 
 
@@ -375,7 +388,7 @@ class SaleController extends Controller
             case 'TRADE_CLOSED':
             case 'TRADE_SUCCESS':
             case 'TRADE_FINISHED':
-                // TODO: 支付成功，取得订单号进行其它相关操作。
+                // 支付成功，取得订单号进行其它相关操作。
                 Log::debug('Alipay notify get data verification success.', [
                     'out_trade_no' => Input::get('out_trade_no'),
                     'trade_no' => Input::get('trade_no')
@@ -386,10 +399,13 @@ class SaleController extends Controller
                 $payment_status='fail';
                 break;
         }
-        $result = Order::update(array('out_order_id'=>$out_trade_no),array('payment_status'=>$payment_status,'payment_time'=>date('Y-m-d H:i:s')));
-        return view('order.index',[
-          'order'=>Order::where('out_order_id','=',$out_trade_no)->first()
+        $result =$this->updateOrderPayStatus($out_trade_no,$payment_status);
+        Log::debug('更新订单状态', [
+            'result' => $result,
+            'out_order_id' => $out_trade_no,
+            'payment_status'=>$payment_status
         ]);
+        return redirect()->to('/order/'.$out_trade_no);
     }
 
 
