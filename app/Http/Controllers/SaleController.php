@@ -360,7 +360,14 @@ class SaleController extends Controller
             Log::notice('Alipay return query data verification fail.', [
                 'data' => Input::all()
             ]);
-            return  Input::all();
+            $out_trade_no=Input::get('out_trade_no');
+            if ($out_trade_no){
+                return view('order.index',[
+                      'order'=>Order::where('out_order_id','=',$out_trade_no)->first()
+                ]);
+           }else{
+               return  redirect()->to('/user/order');
+           }
         }
         $this->saveTrans();
         $out_trade_no=Input::get('out_trade_no');
