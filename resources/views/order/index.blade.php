@@ -61,7 +61,7 @@
                   <div class="text-center bs-wizard-stepnum">付款</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                    <a href="#" class="bs-wizard-dot"></a>
-                           <div class="bs-wizard-info text-center">
+                  <div class="bs-wizard-info text-center">时间:{{ $order->payment_status=='success'?$order->payment_time:'' }}</div>
                 </div>
                 </div>
 
@@ -128,7 +128,7 @@
                 </div>
               </div>
               <div class="col-md-8 col-sm-12 rows">
-                @if ($order->payment!=='success')
+                @if ($order->payment_status!=='success')
                   <form  class="form-horizontal" action="/pay/{{$order->out_order_id}}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
