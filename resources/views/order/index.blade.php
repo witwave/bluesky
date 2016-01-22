@@ -62,18 +62,18 @@
                   <div class="progress"><div class="progress-bar"></div></div>
                    <a href="#" class="bs-wizard-dot"></a>
                   <div class="bs-wizard-info text-center">时间:{{ $order->payment_status=='success'?$order->payment_time:'' }}</div>
-        
+
                 </div>
 
                 @if ($order->payment_status=='success')
-                  <div class="col-xs-3 bs-wizard-step  {{ $order->sent?'complete':'active' }}" ><!-- complete -->
+                  <div class="col-xs-3 bs-wizard-step  {{ $order->status>1?'complete':'active' }}" ><!-- complete -->
                     <div class="text-center bs-wizard-stepnum">等待{{$order->self_get==1?'上门取货':'收货' }}</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                     <div class="bs-wizard-info text-center"></div>
                   </div>
 
-                  <div class="col-xs-3 bs-wizard-step {{ $order->sent?'complete':'disabled' }}" >
+                  <div class="col-xs-3 bs-wizard-step {{ $order->status==2?'complete':'disabled' }}" >
                     <div class="text-center bs-wizard-stepnum">完成</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
