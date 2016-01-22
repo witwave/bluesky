@@ -62,7 +62,7 @@
                   <div class="progress"><div class="progress-bar"></div></div>
                    <a href="#" class="bs-wizard-dot"></a>
                   <div class="bs-wizard-info text-center">时间:{{ $order->payment_status=='success'?$order->payment_time:'' }}</div>
-                </div>
+        
                 </div>
 
                 @if ($order->payment_status=='success')
