@@ -56,7 +56,11 @@
                             <a href="/order/{{ $row->out_order_id }}"><small>订单详情</small></a>
                           </td>
                           <td style="text-align:center;vertical-align:middle" rowspan="{{ count($row->products)}}">
-                            <a href="/confirm/{{$row->out_order_id}}">确认收货</a>
+                            @if ($row->status==1)
+                              <a href="/confirm/{{$row->out_order_id}}">确认收货</a>
+                            @elseif ($row->status>1)
+                              交易完成
+                            @endif
                           </td>
                           @else
                           <td  style="text-align:center;vertical-align:middle" rowspan="{{ count($row->products)}}">
