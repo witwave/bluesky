@@ -123,10 +123,10 @@
         <div class="vcenter">
           <!-- v-centered -->
           <div class="vcenter-this">
-            <form class="header-search">
+            <form class="header-search" action="/category.html" method="get">
               <div class="form-group">
-                <input class="form-control" placeholder="查找" type="text">
-                <button class="btn btn-empty"><i class="fa fa-search"></i></button>
+                <input class="form-control" placeholder="查找" type="text" name="q" value="{{Input::get('q')}}">
+                <button class="btn btn-empty" type="submit"><i class="fa fa-search"></i></button>
               </div>
             </form>
           </div>

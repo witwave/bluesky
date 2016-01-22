@@ -9,6 +9,7 @@ use App\Models\Product;
 use Auth;
 use DB;
 use Cart;
+use Input;
 
 class ProductController extends Controller
 {
@@ -28,6 +29,21 @@ class ProductController extends Controller
         $main=array(2=>'蓓爱之选',4=>'花礼',15=> '爱品') ;
         $name='当季新品';
         $temp = Product::where('active', '=', 1);
+
+        $keyword=Input::get('q');
+        $min=Input::get('min',0);
+        $max=Input::get('max',0);
+        if ($keyword){
+          $temp = $temp->where('name', 'like', '%'.$keyword.'%');
+        }
+        if ($min>=0){
+          $temp = $temp->where('price', '>=', $min);
+        }
+
+        if ($max>0){
+          $temp = $temp->where('price', '<=', $max);
+        }
+
         $pid = null;
         if ($id) {
             $categories = DB::select('select name from categories where active=1 and id=?',array($id));

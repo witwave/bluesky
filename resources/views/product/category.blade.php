@@ -51,7 +51,7 @@
                             <span class="show-grid" onclick="changeView('grid')"><span class="text hidden-xs">网格</span><i class="icon fa fa-th"></i></span>
                         </div>
 
-                        <div class="filter"><b class="hidden-xs">显示</b>
+                        <div class="filter hide"><b class="hidden-xs">显示</b>
                             <select>
                                 <option value="9" selected="selected">9</option>
                                 <option value="12">12</option>
@@ -60,7 +60,7 @@
                             </select>
                         </div>
 
-                        <div class="filter"><b class="hidden-xs">排序</b>
+                        <div class="filter hide"><b class="hidden-xs">排序</b>
                             <select>
                                 <option value="9" selected="selected">上架时间</option>
                                 <option value="12">价格</option>
@@ -184,12 +184,12 @@
                             <label>最小价</label>
                             <div class="form-group slider-group">
                                 <div class="slider-ctrl ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-call="jui-slider" data-target="#min1" data-options="{min:0, max:1000, value:80}"><div style="width: 50%;" class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"></div><span style="left: 50%;" class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span></div>
-                                <input id="min1" class="form-control" value="80" type="text" name="min">
+                                <input id="min1" class="form-control" value="{{ Input::get('min',80) }}" type="text" name="min">
                             </div>
                             <label>最大价</label>
                             <div class="form-group slider-group">
                                 <div class="slider-ctrl ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-call="jui-slider" data-target="#max1" data-options="{min:0, max:1000, value:500}"><div style="width: 50%;" class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"></div><span style="left: 50%;" class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span></div>
-                                <input id="max1" class="form-control" value="500" type="text" name="max">
+                                <input id="max1" class="form-control" value="{{ Input::get('max',500) }}" type="text" name="max">
                             </div>
                             <button class="btn btn-outline btn-block" type="submit">查找</button>
                         </form>
