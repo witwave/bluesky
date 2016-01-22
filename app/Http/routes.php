@@ -68,7 +68,7 @@ Route::post('/pay/{id}','SaleController@pay');
 
 //支付
 Route::any('/alipay/return', 'SaleController@webReturn');
-Route::any('/alipay/webNotify', 'SaleController@webNotify');
+Route::any('/alipay/notify', 'SaleController@webNotify');
 
 Route::group(['middleware' => 'auth', 'namespace' => 'User'], function () {
 	Route::get('user/profile', 'UserController@profile');

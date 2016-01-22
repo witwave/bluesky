@@ -358,9 +358,9 @@ class SaleController extends Controller
         // 验证请求。
         if (!app('alipay.web')->verify()) {
             Log::notice('Alipay return query data verification fail.', [
-                'data' => Request::getQueryString()
+                'data' => Input::all()
             ]);
-            return  Request::getQueryString();
+            return  Input::all();
         }
         $this->saveTrans();
         $out_trade_no=Input::get('out_trade_no');
