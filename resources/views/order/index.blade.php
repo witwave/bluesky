@@ -128,7 +128,7 @@
                 </div>
               </div>
               <div class="col-md-8 col-sm-12 rows">
-                @if ($order->payment!=='suceess')
+                @if ($order->payment!=='success')
                   <form  class="form-horizontal" action="/pay/{{$order->out_order_id}}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">

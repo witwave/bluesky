@@ -334,7 +334,7 @@ class SaleController extends Controller
 
     private function saveTrans(){
       $trans=new Transation();
-      $trans->is_success=Input::get('is_success');
+      $trans->is_success=Input::get('is_success','N/A');
       $trans->sign_type=Input::get('sign_type');
       $trans->out_trade_no=Input::get('out_trade_no');
       $trans->subject=Input::get('subject');
