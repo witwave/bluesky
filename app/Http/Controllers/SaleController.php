@@ -321,7 +321,7 @@ class SaleController extends Controller
 
     public function updateOrderPayStatus($out_order_id,$payment_status)
     {
-      $order=Order::where('out_order_id','=',$id)->first();
+      $order=Order::where('out_order_id','=',$out_order_id)->first();
       if($order){
         $order->payment_status=$payment_status;
         $order->payment_time=date('Y-m-d H:i:s');
