@@ -81,14 +81,14 @@
                                     <div class="product clearfix">
                                         <div class="image">
                                             <a  class="main" href="/product/{{ $item->id }}.html">
-                                                <img src="{{ $imagine->getUrl($item->images[0]->path,'medium')}}" alt="{{ $item->name }}">
+                                                <img src="/{{ $imagine->getUrl($item->images[0]->path,'medium')}}" alt="{{ $item->name }}">
                                             </a>
                                             <ul class="additional">
                                                 @foreach ($item->images as $index=>$img)
                                                     @if ($index<4)
                                                         <li>
                                                             <a href="/product/{{ $item->id }}.html" title="{{ $item->name }}">
-                                                                <img src="{{ $imagine->getUrl($img->path,'medium')}}" alt="{{ $item->name }}">
+                                                                <img src="/{{ $imagine->getUrl($img->path,'medium')}}" alt="{{ $item->name }}">
                                                             </a>
                                                         </li>
                                                     @endif

@@ -56,7 +56,7 @@
 					<div class="product-col">
 						<div class="image">
 							<a href="/product/{{$item->id}}.html">
-							<img src="{{ $item->images?$imagine->getUrl($item->images[0]->path,'medium'):''}}" alt="{{ $item->name }}"  class="img-responsive" >
+							<img src="/{{ $item->images?$imagine->getUrl($item->images[0]->path,'medium'):''}}" alt="{{ $item->name }}"  class="img-responsive" >
 							</a>
 						</div>
 						<div class="caption">
