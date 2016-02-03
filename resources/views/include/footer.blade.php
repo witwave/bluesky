@@ -52,15 +52,15 @@
                 <!-- /Col -->
 
                 <!-- Col -->
-                <div class="col-xs-6 col-sm-3 col-md-3 newsletter hide">
-                  <h5>订阅新品</h5>
-                  <form>
-                    <input type="text" class="form-control" placeholder="电子邮箱">
-                    <button class="btn btn-outline" type="button">订阅</button>
-                  </form>
+                <div class="col-xs-6 col-sm-3 col-md-3">
+                  <h5>联系我们</h5>
+                  <ul class="vlinks">
+                  <li><a href="tel:400-8585-520">400-8585-520</a></li>
+                  <li>上海蓓畅电子商务有限公司</li>
+                  <li>上海震旦大厦11F</li>
+                </ul>
                 </div>
                 <!-- /Col -->
-
              </div>
              <!-- /Row -->
 
@@ -79,7 +79,9 @@
           <!-- Container -->
           <div class="container">
 
-            <span class="copy-text">© 蓓爱花坊 2014 - <?php echo date('Y')?>, All rights reserved | 沪ICP备15056118号 </span>
+            <span class="copy-text">© 蓓爱花坊 2014 - <?php echo date('Y')?>, All rights reserved | 沪ICP备15056118号
+
+            </span>
             <!-- hlinks -->
             <ul class="hlinks pull-right">
               <li><a href="#">关于我们</a></li>
