@@ -4,12 +4,12 @@
 
 
 	<div class="intro-slider">
-		
+
 		<!-- BxSlider -->
 		<div class="bx-wrapper size-lg" style="max-width: 100%; margin: 0px auto;"><div class="bx-viewport">
 
-		<div class="bxslider" data-call="bxslider" data-options="{pager:false, mode:'fade'}" style="width: auto; position: relative;">
-			
+		<div class="bxslider" data-call="bxslider" data-options="{pager:false, mode:'fade',auto:true,auto_hover:true}" style="width: auto; position: relative;">
+
 			<!-- Slide -->
 			<div class="slide active">
 				<img class="img-main" src="images/slides/slide1.jpg" alt=""><!-- slider image + background -->
@@ -27,7 +27,7 @@
 				<!-- /Text -->
 			</div>
 			<!-- /Slide -->
-			
+
 			<!-- Slide -->
 			<div class="slide">
 				<img class="img-main" src="images/slides/slide2.jpg" alt=""><!-- slider image + background -->
@@ -45,7 +45,7 @@
 				<!-- /Text -->
 			</div>
 			<!-- /Slide -->
-			
+
 			<!-- Slide -->
 			<div class="slide">
 				<img class="img-main" src="images/slides/slide3.jpg" alt=""><!-- slider image + background -->
@@ -63,9 +63,9 @@
 				<!-- /Text -->
 			</div>
 			<!-- /Slide -->
-			
+
 			<!-- /BxSlider -->
-			
+
 		</div>
 		<!-- Slider Wrapper -->
 	</div>
