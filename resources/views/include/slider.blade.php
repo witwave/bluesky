@@ -8,7 +8,7 @@
 		<!-- BxSlider -->
 		<div class="bx-wrapper size-lg" style="max-width: 100%; margin: 0px auto;"><div class="bx-viewport">
 
-		<div class="bxslider" data-call="bxslider" data-options="{pager:false, mode:'fade',auto:true,auto_hover:true}" style="width: auto; position: relative;">
+		<div class="bxslider" data-call="bxslider" data-options="{pager:false, mode:'fade',auto:true}" style="width: auto; position: relative;">
 
 			<!-- Slide -->
 			<div class="slide active">
