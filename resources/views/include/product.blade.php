@@ -14,7 +14,7 @@
       <!-- Tab panes -->
       <div class="tab-content tab-no-borders">
         <!-- Tab Latest -->
-        <div class="tab-pane active" id="tab-latest">
+        <div class="tab-pane" id="tab-latest">
           <!-- Row -->
           <div class="row">
             <!-- Col -->
@@ -152,7 +152,7 @@
         </div>
         <!-- /Tab Featured -->
         <!-- Tab Trending -->
-        <div class="tab-pane" id="tab-trending">
+        <div class="tab-pane active" id="tab-trending">
           <!-- Row -->
           <div class="row">
            @foreach ($trending as $item)
