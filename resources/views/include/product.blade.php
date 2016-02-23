@@ -21,7 +21,7 @@
             @foreach ($latest as $item)
             @if ($item->images && count($item->images)>0)
             <?php $index++;?>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-6">
               <div class="product clearfix">
                 <div class="image">
                   <a  class="main" href="/product/{{ $item->id }}.html">
@@ -90,7 +90,7 @@
             @foreach ($featured as $item)
             @if ($item->images && count($item->images)>0)
             <?php $index++;?>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-6">
               <div class="product clearfix">
                 <div class="image">
                   <a  class="main" href="/product/{{ $item->id }}.html">
@@ -158,7 +158,7 @@
            @foreach ($trending as $item)
             @if ($item->images && count($item->images)>0)
             <?php $index++;?>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-6">
               <div class="product clearfix">
                 <div class="image">
                   <a  class="main" href="/product/{{ $item->id }}.html">
