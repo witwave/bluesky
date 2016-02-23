@@ -6,9 +6,9 @@
     <div class="product-tabs">
       <!-- Nav tabs -->
       <ul class="nav nav-tabs nav-tabs-line-bottom line-pcolor nav-tabs-center case-u" role="tablist">
-        <li class="active"><a href="#tab-latest" data-toggle="tab" aria-expanded="true">最近</a></li>
+        <li class="active"><a href="#tab-trending" data-toggle="tab" aria-expanded="false">最热</a></li>
+        <li class=""><a href="#tab-latest" data-toggle="tab" aria-expanded="true">最近</a></li>
         <li class=""><a href="#tab-featured" data-toggle="tab" aria-expanded="false">新品</a></li>
-        <li class=""><a href="#tab-trending" data-toggle="tab" aria-expanded="false">最热</a></li>
       </ul>
       <!-- /Nav Tabs -->
       <!-- Tab panes -->
