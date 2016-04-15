@@ -87,3 +87,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'User'], function () {
 	Route::post('user/password', 'UserController@changePassword');
 	Route::post('user/profile', 'UserController@storeProfile');
 });
+
+
+Route::any('/wechat', 'WechatController@serve');

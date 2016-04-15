@@ -150,6 +150,7 @@ return [
 		Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
 		Latrell\Alipay\AlipayServiceProvider::class,
+		Overtrue\LaravelWechat\ServiceProvider::class
 	],
 
 	/*
@@ -199,6 +200,7 @@ return [
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View' => Illuminate\Support\Facades\View::class,
 		'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+		'Wechat' => Overtrue\LaravelWechat\Facade::class,
 
 	],
 
