@@ -90,3 +90,5 @@ Route::group(['middleware' => 'auth', 'namespace' => 'User'], function () {
 
 
 Route::any('/wechat', 'WechatController@serve');
+
+Route::get('/prepay', 'WechatController@prepay');
